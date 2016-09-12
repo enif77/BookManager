@@ -42,7 +42,7 @@ namespace BookManager.DataObjects
 
         private int _yearOfPublication;
         private string _isbnCode;
-        private string _placement;
+        private int _bookPlacementId;
         private int _pagesCount;
         private string _dimensions;
 
@@ -61,7 +61,6 @@ namespace BookManager.DataObjects
         public Book()
         {
             IsbnCode = String.Empty;
-            Placement = String.Empty;
             Dimensions = String.Empty;
             PurchasedWhere = String.Empty;
             ResourcesDir = String.Empty;
@@ -169,16 +168,16 @@ namespace BookManager.DataObjects
             }
         }
 
-        [DbColumn("Placement", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
-        public string Placement
+        [DbColumn("BookPlacementId")]
+        public int BookPlacementId
         {
-            get { return _placement; }
+            get { return _bookPlacementId; }
             set
             {
-                if (_placement != value)
+                if (_bookPlacementId != value)
                 {
-                    _placement = value;
-                    OnPropertyChanged("Placement");
+                    _bookPlacementId = value;
+                    OnPropertyChanged("BookPlacementId");
                 }
             }
         }
@@ -291,7 +290,7 @@ namespace BookManager.DataObjects
             if (BookTypeId != source.BookTypeId) return true;
             if (YearOfPublication != source.YearOfPublication) return true;
             if (IsbnCode != source.IsbnCode) return true;
-            if (Placement != source.Placement) return true;
+            if (BookPlacementId != source.BookPlacementId) return true;
             if (PagesCount != source.PagesCount) return true;
             if (Dimensions != source.Dimensions) return true;
             if (PurchasedWhenYear != source.PurchasedWhenYear) return true;

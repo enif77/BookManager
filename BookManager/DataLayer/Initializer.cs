@@ -41,6 +41,7 @@ namespace BookManager.DataLayer
             Registry.RegisterInstance(new BookAuthorDataLayer(database));
             Registry.RegisterInstance(new BookCathegoryDataLayer(database));
             Registry.RegisterInstance(new BookGenreDataLayer(database));
+            Registry.RegisterInstance(new BookPlacementDataLayer(database));
             Registry.RegisterInstance(new BookPublisherDataLayer(database));
             Registry.RegisterInstance(new BookTypeDataLayer(database));
             
@@ -50,6 +51,7 @@ namespace BookManager.DataLayer
             Registry.Get<BookAuthorDataLayer>().GetAll();
             Registry.Get<BookCathegoryDataLayer>().GetAll();
             Registry.Get<BookGenreDataLayer>().GetAll();
+            Registry.Get<BookPlacementDataLayer>().GetAll();
             Registry.Get<BookPublisherDataLayer>().GetAll();
             Registry.Get<BookTypeDataLayer>().GetAll();
             Registry.Get<BookDataLayer>().GetAll();

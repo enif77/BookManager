@@ -80,6 +80,9 @@
     <Compile Include="DataLayer\BookAuthorDataLayer.cs" />
     <Compile Include="DataLayer\BookCathegoryDataLayer.cs" />
     <Compile Include="DataLayer\BookDataLayer.cs" />
+    <Compile Include="DataLayer\BookPlacementDataLayer.cs" />
+    <Compile Include="DataObjects\BookDataGridItem.cs" />
+    <Compile Include="DataObjects\BookFilter.cs" />
     <Compile Include="DataLayer\BookGenreDataLayer.cs" />
     <Compile Include="DataLayer\BookPublisherDataLayer.cs" />
     <Compile Include="DataLayer\BookTypeDataLayer.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="DataObjects\Book.cs" />
     <Compile Include="DataObjects\BookAuthor.cs" />
     <Compile Include="DataObjects\BookCathegory.cs" />
+    <Compile Include="DataObjects\BookPlacement.cs" />
     <Compile Include="DataObjects\BookGenre.cs" />
     <Compile Include="DataObjects\BookPublisher.cs" />
     <Compile Include="DataObjects\BookType.cs" />

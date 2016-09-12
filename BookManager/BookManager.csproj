@@ -77,8 +77,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\ExtendedObservableCollection.cs" />
+    <Compile Include="DataLayer\BookAuthorDataLayer.cs" />
+    <Compile Include="DataLayer\BookCathegoryDataLayer.cs" />
+    <Compile Include="DataLayer\BookDataLayer.cs" />
+    <Compile Include="DataLayer\BookGenreDataLayer.cs" />
+    <Compile Include="DataLayer\BookPublisherDataLayer.cs" />
+    <Compile Include="DataLayer\BookTypeDataLayer.cs" />
     <Compile Include="DataLayer\ConfigurationDataLayer.cs" />
     <Compile Include="DataLayer\Initializer.cs" />
+    <Compile Include="DataObjects\Book.cs" />
+    <Compile Include="DataObjects\BookAuthor.cs" />
+    <Compile Include="DataObjects\BookCathegory.cs" />
+    <Compile Include="DataObjects\BookGenre.cs" />
+    <Compile Include="DataObjects\BookPublisher.cs" />
+    <Compile Include="DataObjects\BookType.cs" />
     <Compile Include="DataObjects\Configuration.cs" />
     <Compile Include="Forms\UnhandledErrorWindow.xaml.cs">
       <DependentUpon>UnhandledErrorWindow.xaml</DependentUpon>

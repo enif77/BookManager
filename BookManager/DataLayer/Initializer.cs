@@ -36,31 +36,23 @@ namespace BookManager.DataLayer
 
             // Register DALs.
             Registry.RegisterInstance(new ConfigurationDataLayer(database));
-            
-            //Registry.RegisterInstance(new AutorDataLayer(database));
-            //Registry.RegisterInstance(new DiloDataLayer(database));
-            //Registry.RegisterInstance(new KurzovniListekDataLayer(database));
-            //Registry.RegisterInstance(new MajitelDataLayer(database));
-            //Registry.RegisterInstance(new MenaDataLayer(database));
-            //Registry.RegisterInstance(new OceneniDataLayer(database));
-            //Registry.RegisterInstance(new ProdejniMistoDataLayer(database));
-            //Registry.RegisterInstance(new TechnikaDataLayer(database));
-            //Registry.RegisterInstance(new TypDilaDataLayer(database));
-            //Registry.RegisterInstance(new UmisteniDataLayer(database));
 
+            Registry.RegisterInstance(new BookDataLayer(database));
+            Registry.RegisterInstance(new BookAuthorDataLayer(database));
+            Registry.RegisterInstance(new BookCathegoryDataLayer(database));
+            Registry.RegisterInstance(new BookGenreDataLayer(database));
+            Registry.RegisterInstance(new BookPublisherDataLayer(database));
+            Registry.RegisterInstance(new BookTypeDataLayer(database));
+            
             // Initialize DALs, load current data to memory.
             Registry.Get<ConfigurationDataLayer>().GetAll();
 
-            //Registry.Get<MenaDataLayer>().GetAll();
-            //Registry.Get<OceneniDataLayer>().GetAll();
-            //Registry.Get<ProdejniMistoDataLayer>().GetAll();
-            //Registry.Get<TechnikaDataLayer>().GetAll();
-            //Registry.Get<TypDilaDataLayer>().GetAll();
-            //Registry.Get<UmisteniDataLayer>().GetAll();
-            //Registry.Get<KurzovniListekDataLayer>().GetAll();
-            //Registry.Get<MajitelDataLayer>().GetAll();
-            //Registry.Get<AutorDataLayer>().GetAll();
-            //Registry.Get<DiloDataLayer>().GetAll();
+            Registry.Get<BookAuthorDataLayer>().GetAll();
+            Registry.Get<BookCathegoryDataLayer>().GetAll();
+            Registry.Get<BookGenreDataLayer>().GetAll();
+            Registry.Get<BookPublisherDataLayer>().GetAll();
+            Registry.Get<BookTypeDataLayer>().GetAll();
+            Registry.Get<BookDataLayer>().GetAll();
         }
     }
 }

@@ -97,6 +97,8 @@
     <Compile Include="DataObjects\BookType.cs" />
     <Compile Include="DataObjects\Configuration.cs" />
     <Compile Include="DataObjects\GlobalDataObject.cs" />
+    <Compile Include="Forms\Converters\BoolToStringConverter.cs" />
+    <Compile Include="Forms\Converters\ReverseBoolConverter.cs" />
     <Compile Include="Forms\UnhandledErrorWindow.xaml.cs">
       <DependentUpon>UnhandledErrorWindow.xaml</DependentUpon>
     </Compile>

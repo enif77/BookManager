@@ -48,6 +48,7 @@ namespace BookManager.DataObjects
         /// </summary>
         public BookAuthor()
         {
+            // TODO: Do not set String.Empty to nullable properties.
             FirstName = String.Empty;
             LastName = String.Empty;
             Description = String.Empty;
@@ -68,7 +69,7 @@ namespace BookManager.DataObjects
         /// <summary>
         /// The first name of an author.
         /// </summary>
-        [DbColumn("FirstName", Int32.MaxValue)]
+        [DbColumn("FirstName", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
         public string FirstName
         {
             get { return _firstName; }
@@ -87,7 +88,7 @@ namespace BookManager.DataObjects
         /// <summary>
         /// The last name of an author.
         /// </summary>
-        [DbColumn("LastName", Int32.MaxValue)]
+        [DbColumn("LastName", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
         public string LastName
         {
             get { return _lastName; }
@@ -102,6 +103,14 @@ namespace BookManager.DataObjects
                 }
             }
         }
+
+        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
+        public override string Description
+        {
+            get { return base.Description; }
+            set { base.Description = value; }
+        }
+
 
         /// <summary>
         /// Implements the ToString() method for the SingleSelect control.

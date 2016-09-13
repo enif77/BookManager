@@ -40,9 +40,18 @@ namespace BookManager.DataObjects
         /// </summary>
         public BookType()
         {
+            // TODO: Do not set String.Empty to nullable properties.
             Description = String.Empty;
         }
 
         #endregion
+
+
+        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
+        public override string Description
+        {
+            get { return base.Description; }
+            set { base.Description = value; }
+        }
     }
 }

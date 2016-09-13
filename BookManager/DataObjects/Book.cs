@@ -60,11 +60,13 @@ namespace BookManager.DataObjects
 
         public Book()
         {
+            // TODO: Do not set String.Empty to nullable properties.
             IsbnCode = String.Empty;
             Dimensions = String.Empty;
             PurchasedWhere = String.Empty;
             ResourcesDir = String.Empty;
             ThumbnailName = String.Empty;
+            Description = String.Empty;
         }
 
         #endregion
@@ -280,6 +282,12 @@ namespace BookManager.DataObjects
             }
         }
 
+        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
+        public override string Description
+        {
+            get { return base.Description; }
+            set { base.Description = value; }
+        }
 
         public override bool NeedsUpdate(Book source)
         {

@@ -26,13 +26,13 @@ namespace BookManager.DataLayer
 
     using BookManager.DataObjects;
 
-
+                      
     /// <summary>
     /// DAL for the BookCathegory data objects.
     /// </summary>
-    public class BookCathegoryDataLayer : LookupDataLayer<BookCathegory>
+    public class BookCategoryDataLayer : LookupDataLayer<BookCategory>
     {
-        public BookCathegoryDataLayer(Database database)
+        public BookCategoryDataLayer(Database database)
             : base(database)
         {
         }

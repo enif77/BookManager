@@ -20,38 +20,22 @@ freely, subject to the following restrictions:
  
  */
 
-namespace BookManager.DataObjects
+namespace BookManager.Forms
 {
-    using System;
+    #region constants
 
-    using SimpleDb.Shared;
-
-
-    /// <summary>
-    /// A book cathegory.
-    /// </summary>
-    [DbTable("BookCathegory")]
-    public sealed class BookCathegory : ALookupDataObject<BookCathegory>
+    public enum DialogResultStateType
     {
-        #region ctor
+        /// <summary>
+        /// Save/use changes.
+        /// </summary>
+        Ok,
 
         /// <summary>
-        /// Constructor.
+        /// Changes canceled.
         /// </summary>
-        public BookCathegory()
-        {
-            // TODO: Do not set String.Empty to nullable properties.
-            Description = String.Empty;
-        }
-
-        #endregion
-
-
-        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
-        public override string Description
-        {
-            get { return base.Description; }
-            set { base.Description = value; }
-        }
+        Cancel
     }
+
+    #endregion
 }

@@ -4,17 +4,190 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookManager"
+        xmlns:converters="clr-namespace:BookManager.Forms.Converters"
+        xmlns:businessObjects="clr-namespace:BookManager.DataObjects"
         mc:Ignorable="d"
         Title="Book Manager v 1.0.0" 
         Height="600" 
-        Width="800"
+        Width="1024"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterScreen" 
         WindowState="Normal"
         MouseDown="MainWindow_OnMouseDown"
         x:Name="MainWindowForm">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <converters:BoolToStringConverter x:Key="BoolToStringConverter"></converters:BoolToStringConverter>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="NewCommandBinding_Executed" />
+        <CommandBinding Command="Open" Executed="OpenCommandBinding_Executed" />
+        <CommandBinding Command="Refresh" Executed="RefreshCommandBinding_Executed" />
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Control" Command="New"/>
+        <KeyBinding Key="F4" Command="Open"/>
+        <KeyBinding Key="F5" Command="Refresh"/>
+    </Window.InputBindings>
     
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <!-- Menu -->
+            <RowDefinition Height="24" />
+
+            <!-- Data grid filter -->
+            <RowDefinition Height="Auto" />
+
+            <!-- Data grid -->
+            <RowDefinition Height="*" />
+
+            <!-- Data grid buttons -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem x:Name="FileMenu" Header="File">
+                <MenuItem Header="Ukončit" Click="ExitMenuItem_OnClick" />
+            </MenuItem>
+
+            <MenuItem x:Name="DataMenu" Header="Data">
+                <MenuItem Header="New book..." InputGestureText="Ctrl+N" Click="NewBookMenuItem_OnClick" />
+                <MenuItem Header="Edit book(s)..." InputGestureText="F4" Click="EditBookMenuItem_OnClick" />
+                <MenuItem Header="Manage lookups..." Click="ManageLookupsMenuItem_OnClick" />
+                <MenuItem Header="---" IsEnabled="False"/>
+                <MenuItem Header="Refresh the books list" InputGestureText="F5" Click="RefreshMenuItem_OnClick" />
+                <MenuItem Header="---" IsEnabled="False"/>
+                <MenuItem Header="Save the books list to a CSV file..." Click="SaveDataToCsvMenuItem_OnClick" />
+                <MenuItem Header="Save the books list to the clipboard" Click="CopyDataToClipboardMenuItem_OnClick" />
+                <MenuItem Header="---" IsEnabled="False"/>
+                <MenuItem Header="Backup data..." Click="BackupDataMenuItem_OnClick" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Filter děl -->
+        <Expander Grid.Row="1" IsExpanded="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Purchased when (from/to - year)"/>
+                <TextBox 
+                    x:Name="PurchasedWhenYearFromTextBox" 
+                    Grid.Row="0" Grid.Column="1" 
+                    Margin="1" 
+                    VerticalAlignment="Center"
+                    Text="{Binding Filter.PurchasedWhenYearFrom, ElementName=MainWindowForm, Mode=TwoWay}"
+                    Width="120" 
+                    HorizontalAlignment="Left" 
+                    LostFocus="PurchasedWhenYearFromOnLostFocus" />
+
+                <TextBox 
+                    x:Name="PurchasedWhenYearToTextBox" 
+                    Grid.Row="0" Grid.Column="2" 
+                    Margin="1" 
+                    VerticalAlignment="Center"
+                    Text="{Binding Filter.PurchasedWhenYearTo, ElementName=MainWindowForm, Mode=TwoWay}"
+                    Width="120" 
+                    HorizontalAlignment="Left" 
+                    LostFocus="PurchasedWhenYearToOnLostFocus" />
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Author"/>
+                <ComboBox 
+                    Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"    
+                    Margin="1" 
+                    Width="200"
+                    x:Name="BookAuthorComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookAuthorId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookAuthor.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Placement"/>
+                <ComboBox 
+                    Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"    
+                    Margin="1" 
+                    Width="200"
+                    x:Name="BookPlacementComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookPlacementId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookPlacement.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+        </Expander>
+
+        <DataGrid 
+            x:Name="BookDataGrid"
+            Grid.Row="2"
+            AutoGenerateColumns="False" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch"
+            HorizontalScrollBarVisibility="Visible"
+            VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True" 
+            SelectionChanged="DataGrid_SelectionChanged"
+            MouseDoubleClick="DataGrid_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Visibility="Hidden" />
+
+                <DataGridTextColumn Header="Book Name" Binding="{Binding Path=BookName}" />
+                <DataGridTextColumn Header="Author First Name" Binding="{Binding Path=BookAuthorFirstName}" />
+                <DataGridTextColumn Header="Author Last Name" Binding="{Binding Path=BookAuthorLastName}" />
+                <DataGridTextColumn Header="Cathegory" Binding="{Binding Path=BookCathegoryName}" />
+                <DataGridTextColumn Header="Genre" Binding="{Binding Path=BookGenreName}" />
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Path=BookPublisherName}" />
+                <DataGridTextColumn Header="Year of Publication" Binding="{Binding Path=YearOfPublication}" />
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Path=IsbnCode}" />
+                <DataGridTextColumn Header="Placement" Binding="{Binding Path=BookPlacementName}" />
+                <!--<DataGridTextColumn Header="Purchased Price" Binding="{Binding Path=PurchasedPrice, StringFormat={x:Static Core:Culture.GroupedWholeNumberFormat}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Content="+" Width="30" Margin="10" Background="DarkSeaGreen" Foreground="WhiteSmoke" FontWeight="Bold" ToolTip="New book..." Click="NewBookButton_Click"/>
+                <Button Content="..." Width="30" Margin="10" Background="DeepSkyBlue" Foreground="WhiteSmoke" FontWeight="Bold" ToolTip="Edit selected book..." Click="EditBookButton_Click"/>
+                <Button Content="-" Width="30" Margin="10" Background="PaleVioletRed" Foreground="WhiteSmoke" FontWeight="Bold" ToolTip="Delete selected book(s)..." Click="DeleteBookButton_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Label Margin="10, 1, 4, 1" Content="Books count: " VerticalAlignment="Center" />
+                <TextBox Margin="1" IsReadOnly="True" Width="100" VerticalAlignment="Center" Text="{Binding Filter.BooksCountAcc, ElementName=MainWindowForm, Mode=OneWay}" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <Button Grid.Column="2" Content="Refresh" Width="100" HorizontalAlignment="Right" Margin="10" Click="UpdateButton_Click"/>
+        </Grid>
     </Grid>
 </Window>

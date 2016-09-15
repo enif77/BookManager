@@ -48,7 +48,7 @@ namespace BookManager.DataLayer
             var res = new List<BookDataGridItem>();
 
             var bookAuthorDal = Registry.Get<BookAuthorDataLayer>();
-            var bookCathegoryDal = Registry.Get<BookCathegoryDataLayer>();
+            var bookCategoryDal = Registry.Get<BookCategoryDataLayer>();
             var bookGenreDal = Registry.Get<BookGenreDataLayer>();
             var bookPublisherDal = Registry.Get<BookPublisherDataLayer>();
             var bookTypeDal = Registry.Get<BookTypeDataLayer>();
@@ -67,9 +67,10 @@ namespace BookManager.DataLayer
                 var i = new BookDataGridItem
                 {
                     Id = d.Id,
+                    BookName = d.Name,
                     BookAuthorFirstName = GetBookAuthorFirstName(bookAuthorDal, d.BookAuthorId),
                     BookAuthorLastName = GetBookAuthorLastName(bookAuthorDal, d.BookAuthorId),
-                    BookCathegoryName = GetBookCathegoryName(bookCathegoryDal, d.BookCathegoryId),
+                    BookCategoryName = GetBookCategoryName(bookCategoryDal, d.BookCategoryId),
                     BookGenreName = GetBookGenreName(bookGenreDal, d.BookGenreId),
                     BookPublisherName = GetBookPublisherName(bookPublisherDal, d.BookPublisherId),
                     BookTypeName = GetBookTypeName(bookTypeDal, d.BookTypeId),
@@ -113,7 +114,7 @@ namespace BookManager.DataLayer
             return String.Empty;
         }
 
-        private string GetBookCathegoryName(BookCathegoryDataLayer dal, int id)
+        private string GetBookCategoryName(BookCategoryDataLayer dal, int id)
         {
             if (id > 0)
             {

@@ -35,7 +35,7 @@ namespace BookManager.DataObjects
     public class GlobalDataObject :
         ICollectionSynchronizer<BookDataGridItem>,
         ICollectionSynchronizer<BookAuthor>,
-        ICollectionSynchronizer<BookCathegory>,
+        ICollectionSynchronizer<BookCategory>,
         ICollectionSynchronizer<BookGenre>,
         ICollectionSynchronizer<BookPlacement>,
         ICollectionSynchronizer<BookPublisher>,
@@ -46,7 +46,7 @@ namespace BookManager.DataObjects
 
         private readonly ExtendedObservableCollection<BookDataGridItem> _itemsCollection;
         private readonly ExtendedObservableCollection<BookAuthor> _bookAuthorCollection;
-        private readonly ExtendedObservableCollection<BookCathegory> _bookCathegoryCollection;
+        private readonly ExtendedObservableCollection<BookCategory> _bookCategoryCollection;
         private readonly ExtendedObservableCollection<BookGenre> _bookGenreCollection;
         private readonly ExtendedObservableCollection<BookPlacement> _bookPlacementCollection;
         private readonly ExtendedObservableCollection<BookPublisher> _bookPublisherCollection;
@@ -73,9 +73,9 @@ namespace BookManager.DataObjects
         }
 
 
-        public ExtendedObservableCollection<BookCathegory> BookCathegoryCollection
+        public ExtendedObservableCollection<BookCategory> BookCategoryCollection
         {
-            get { return _bookCathegoryCollection; }
+            get { return _bookCategoryCollection; }
         }
 
 
@@ -111,7 +111,7 @@ namespace BookManager.DataObjects
         {
             _itemsCollection = new ExtendedObservableCollection<BookDataGridItem>();
             _bookAuthorCollection = new ExtendedObservableCollection<BookAuthor>();
-            _bookCathegoryCollection = new ExtendedObservableCollection<BookCathegory>();
+            _bookCategoryCollection = new ExtendedObservableCollection<BookCategory>();
             _bookGenreCollection = new ExtendedObservableCollection<BookGenre>();
             _bookPlacementCollection = new ExtendedObservableCollection<BookPlacement>();
             _bookPublisherCollection = new ExtendedObservableCollection<BookPublisher>();
@@ -156,11 +156,11 @@ namespace BookManager.DataObjects
         }
 
 
-        public ExtendedObservableCollection<BookCathegory> UpdateBookCathegoryCollection()
+        public ExtendedObservableCollection<BookCategory> UpdateBookCategoryCollection()
         {
-            _bookCathegoryCollection.SynchronizeWith(new Collection<BookCathegory>(Registry.Get<BookCathegoryDataLayer>().GetAll().ToList()), this);
+            _bookCategoryCollection.SynchronizeWith(new Collection<BookCategory>(Registry.Get<BookCategoryDataLayer>().GetAll().ToList()), this);
 
-            return BookCathegoryCollection;
+            return BookCategoryCollection;
         }
 
 
@@ -216,19 +216,19 @@ namespace BookManager.DataObjects
         }
 
 
-        public BookCathegory GetBookCathegory(int id)
+        public BookCategory GetBookCategory(int id)
         {
-            return Registry.Get<BookCathegoryDataLayer>().Get(id);
+            return Registry.Get<BookCategoryDataLayer>().Get(id);
         }
 
-        public void SaveBookCathegory(BookCathegory obj)
+        public void SaveBookCategory(BookCategory obj)
         {
-            Registry.Get<BookCathegoryDataLayer>().Save(obj);
+            Registry.Get<BookCategoryDataLayer>().Save(obj);
         }
 
-        public void DeleteBookCathegory(BookCathegory obj)
+        public void DeleteBookCategory(BookCategory obj)
         {
-            Registry.Get<BookCathegoryDataLayer>().Delete(obj);
+            Registry.Get<BookCategoryDataLayer>().Delete(obj);
         }
 
 
@@ -352,7 +352,7 @@ namespace BookManager.DataObjects
         #endregion
 
 
-        #region Implementation of ICollectionSynchronizer<BookCathegory>
+        #region Implementation of ICollectionSynchronizer<BookCategory>
 
         /// <summary>
         /// Compares two entities and returns their natural order.
@@ -360,7 +360,7 @@ namespace BookManager.DataObjects
         /// <param name="a">A source entity (an entity in this collection).</param>
         /// <param name="b">A target entity (an entity in the other collection).</param>
         /// <returns>-1, 0, 1.</returns>
-        public int GetOrder(BookCathegory a, BookCathegory b)
+        public int GetOrder(BookCategory a, BookCategory b)
         {
             return a.Id.CompareTo(b.Id);
         }
@@ -371,7 +371,7 @@ namespace BookManager.DataObjects
         /// <param name="a">A source entity (an entity in this collection).</param>
         /// <param name="b">A target entity (an entity in the other collection).</param>
         /// <returns>True if both entities are the same.</returns>
-        public bool NeedsUpdate(BookCathegory a, BookCathegory b)
+        public bool NeedsUpdate(BookCategory a, BookCategory b)
         {
             return a.NeedsUpdate(b);
         }

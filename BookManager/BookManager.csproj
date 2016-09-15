@@ -46,6 +46,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +66,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Forms\BookPublisherEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\BookPlacementEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\BookGenreEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\BookCategoryEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\BookAuthorEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\BookTypeEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\LookupsEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\UnhandledErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,7 +108,7 @@
     </Compile>
     <Compile Include="Core\ExtendedObservableCollection.cs" />
     <Compile Include="DataLayer\BookAuthorDataLayer.cs" />
-    <Compile Include="DataLayer\BookCathegoryDataLayer.cs" />
+    <Compile Include="DataLayer\BookCategoryDataLayer.cs" />
     <Compile Include="DataLayer\BookDataLayer.cs" />
     <Compile Include="DataLayer\BookPlacementDataLayer.cs" />
     <Compile Include="DataObjects\BookDataGridItem.cs" />
@@ -90,15 +120,39 @@
     <Compile Include="DataLayer\Initializer.cs" />
     <Compile Include="DataObjects\Book.cs" />
     <Compile Include="DataObjects\BookAuthor.cs" />
-    <Compile Include="DataObjects\BookCathegory.cs" />
+    <Compile Include="DataObjects\BookCategory.cs" />
     <Compile Include="DataObjects\BookPlacement.cs" />
     <Compile Include="DataObjects\BookGenre.cs" />
     <Compile Include="DataObjects\BookPublisher.cs" />
     <Compile Include="DataObjects\BookType.cs" />
     <Compile Include="DataObjects\Configuration.cs" />
     <Compile Include="DataObjects\GlobalDataObject.cs" />
+    <Compile Include="Forms\BookPublisherEditorWindow.xaml.cs">
+      <DependentUpon>BookPublisherEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookPlacementEditorWindow.xaml.cs">
+      <DependentUpon>BookPlacementEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookGenreEditorWindow.xaml.cs">
+      <DependentUpon>BookGenreEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookCategoryEditorWindow.xaml.cs">
+      <DependentUpon>BookCategoryEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookAuthorEditorWindow.xaml.cs">
+      <DependentUpon>BookAuthorEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookTypeEditorWindow.xaml.cs">
+      <DependentUpon>BookTypeEditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Converters\BoolToStringConverter.cs" />
     <Compile Include="Forms\Converters\ReverseBoolConverter.cs" />
+    <Compile Include="Forms\DialogResultStateType.cs" />
+    <Compile Include="Forms\LookupsEditorWindow.xaml.cs">
+      <DependentUpon>LookupsEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UIHelper.cs" />
+    <Compile Include="Forms\UIShared.cs" />
     <Compile Include="Forms\UnhandledErrorWindow.xaml.cs">
       <DependentUpon>UnhandledErrorWindow.xaml</DependentUpon>
     </Compile>

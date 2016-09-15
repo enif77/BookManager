@@ -35,7 +35,7 @@ namespace BookManager.DataObjects
         // ID, Name, Description - ALookupDataObject.
 
         private int _bookAuthorId;
-        private int _bookCathegoryId;
+        private int _bookCategoryId;
         private int _bookGenreId;
         private int _bookPublisherId;
         private int _bookTypeId;
@@ -86,16 +86,16 @@ namespace BookManager.DataObjects
             }
         }
 
-        [DbColumn("BookCathegoryId")]
-        public int BookCathegoryId
+        [DbColumn("BookCategoryId")]
+        public int BookCategoryId
         {
-            get { return _bookCathegoryId; }
+            get { return _bookCategoryId; }
             set
             {
-                if (_bookCathegoryId != value)
+                if (_bookCategoryId != value)
                 {
-                    _bookCathegoryId = value;
-                    OnPropertyChanged("BookCathegoryId");
+                    _bookCategoryId = value;
+                    OnPropertyChanged("BookCategoryId");
                 }
             }
         }
@@ -292,7 +292,7 @@ namespace BookManager.DataObjects
         public override bool NeedsUpdate(Book source)
         {
             if (BookAuthorId != source.BookAuthorId) return true;
-            if (BookCathegoryId != source.BookCathegoryId) return true;
+            if (BookCategoryId != source.BookCategoryId) return true;
             if (BookGenreId != source.BookGenreId) return true;
             if (BookPublisherId != source.BookPublisherId) return true;
             if (BookTypeId != source.BookTypeId) return true;

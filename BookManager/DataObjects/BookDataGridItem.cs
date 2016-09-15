@@ -33,9 +33,10 @@ namespace BookManager.DataObjects
 
         // ID - AIdDataObject.
 
+        private string _bookName;
         private string _bookAuthorFirstName;
         private string _bookAuthorLastName;
-        private string _bookCathegoryName;
+        private string _bookCategoryName;
         private string _bookGenreName;
         private string _bookPublisherName;
         private string _bookTypeName;
@@ -45,6 +46,19 @@ namespace BookManager.DataObjects
 
         #endregion
 
+
+        public string BookName
+        {
+            get { return _bookName; }
+            set
+            {
+                if (_bookName != value)
+                {
+                    _bookName = value;
+                    OnPropertyChanged("BookName");
+                }
+            }
+        }
 
         public string BookAuthorFirstName
         {
@@ -72,15 +86,15 @@ namespace BookManager.DataObjects
             }
         }
 
-        public string BookCathegoryName
+        public string BookCategoryName
         {
-            get { return _bookCathegoryName; }
+            get { return _bookCategoryName; }
             set
             {
-                if (_bookCathegoryName != value)
+                if (_bookCategoryName != value)
                 {
-                    _bookCathegoryName = value;
-                    OnPropertyChanged("BookCathegoryName");
+                    _bookCategoryName = value;
+                    OnPropertyChanged("BookCategoryName");
                 }
             }
         }
@@ -167,9 +181,10 @@ namespace BookManager.DataObjects
         public bool NeedsUpdate(BookDataGridItem source)
         {
             if (Id != source.Id) return true;
+            if (BookName != source.BookName) return true;
             if (BookAuthorFirstName != source.BookAuthorFirstName) return true;
             if (BookAuthorLastName != source.BookAuthorLastName) return true;
-            if (BookCathegoryName != source.BookCathegoryName) return true;
+            if (BookCategoryName != source.BookCategoryName) return true;
             if (BookGenreName != source.BookGenreName) return true;
             if (BookPublisherName != source.BookPublisherName) return true;
             if (BookTypeName != source.BookTypeName) return true;

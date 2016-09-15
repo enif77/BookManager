@@ -24,12 +24,14 @@
 
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewCommandBinding_Executed" />
+        <CommandBinding Command="Play" Executed="PlayCommandBinding_Executed" />
         <CommandBinding Command="Open" Executed="OpenCommandBinding_Executed" />
         <CommandBinding Command="Refresh" Executed="RefreshCommandBinding_Executed" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
         <KeyBinding Key="N" Modifiers="Control" Command="New"/>
+        <KeyBinding Key="F2" Command="Play"/>
         <KeyBinding Key="F4" Command="Open"/>
         <KeyBinding Key="F5" Command="Refresh"/>
     </Window.InputBindings>
@@ -56,8 +58,9 @@
 
             <MenuItem x:Name="DataMenu" Header="Data">
                 <MenuItem Header="New book..." InputGestureText="Ctrl+N" Click="NewBookMenuItem_OnClick" />
-                <MenuItem Header="Edit book(s)..." InputGestureText="F4" Click="EditBookMenuItem_OnClick" />
-                <MenuItem Header="Manage lookups..." Click="ManageLookupsMenuItem_OnClick" />
+                <MenuItem Header="Edit book..." InputGestureText="F4" Click="EditBookMenuItem_OnClick" />
+                <MenuItem Header="---" IsEnabled="False"/>
+                <MenuItem Header="Manage lookups..." InputGestureText="F2" Click="ManageLookupsMenuItem_OnClick" />
                 <MenuItem Header="---" IsEnabled="False"/>
                 <MenuItem Header="Refresh the books list" InputGestureText="F5" Click="RefreshMenuItem_OnClick" />
                 <MenuItem Header="---" IsEnabled="False"/>

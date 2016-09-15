@@ -154,6 +154,11 @@ namespace BookManager
             AddBook();
         }
 
+        private void PlayCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ManageLookupsMenuItem_OnClick(sender, e);
+        }
+
         private void OpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             EditBook();

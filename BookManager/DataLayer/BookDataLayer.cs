@@ -76,6 +76,8 @@ namespace BookManager.DataLayer
                     BookTypeName = GetBookTypeName(bookTypeDal, d.BookTypeId),
                     BookPlacementName = GetBookPlacementName(bookPlacementDal, d.BookTypeId),
                     YearOfPublication = d.YearOfPublication,
+                    PurchasedWhenYear = d.PurchasedWhenYear,
+                    PurchasedPrice = d.PurchasedPrice,
                     IsbnCode = d.IsbnCode,
                 };
 

@@ -41,21 +41,6 @@ namespace BookManager.DataObjects
         #endregion
 
 
-        #region ctor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public BookAuthor()
-        {
-            // TODO: Do not set String.Empty to nullable properties.
-            FirstName = String.Empty;
-            LastName = String.Empty;
-            Description = String.Empty;
-        }
-
-        #endregion
-
         /// <summary>
         /// The name used in the lists.
         /// </summary>

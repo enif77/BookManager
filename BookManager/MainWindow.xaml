@@ -156,19 +156,20 @@
                 <DataGridTextColumn Header="Book Name" Binding="{Binding Path=BookName}" />
                 <DataGridTextColumn Header="Author First Name" Binding="{Binding Path=BookAuthorFirstName}" />
                 <DataGridTextColumn Header="Author Last Name" Binding="{Binding Path=BookAuthorLastName}" />
-                <DataGridTextColumn Header="Cathegory" Binding="{Binding Path=BookCathegoryName}" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Path=BookCategoryName}" />
                 <DataGridTextColumn Header="Genre" Binding="{Binding Path=BookGenreName}" />
                 <DataGridTextColumn Header="Publisher" Binding="{Binding Path=BookPublisherName}" />
                 <DataGridTextColumn Header="Year of Publication" Binding="{Binding Path=YearOfPublication}" />
-                <DataGridTextColumn Header="ISBN" Binding="{Binding Path=IsbnCode}" />
-                <DataGridTextColumn Header="Placement" Binding="{Binding Path=BookPlacementName}" />
-                <!--<DataGridTextColumn Header="Purchased Price" Binding="{Binding Path=PurchasedPrice, StringFormat={x:Static Core:Culture.GroupedWholeNumberFormat}}">
+                <DataGridTextColumn Header="Purchased Year" Binding="{Binding Path=PurchasedWhenYear}" />
+                <DataGridTextColumn Header="Purchased Price" Binding="{Binding Path=PurchasedPrice}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="HorizontalAlignment" Value="Right" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>-->
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Path=IsbnCode}" />
+                <DataGridTextColumn Header="Placement" Binding="{Binding Path=BookPlacementName}" />
             </DataGrid.Columns>
         </DataGrid>
 

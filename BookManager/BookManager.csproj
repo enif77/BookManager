@@ -86,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Forms\BookEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\BookTypeEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +145,9 @@
     </Compile>
     <Compile Include="Forms\BookAuthorEditorWindow.xaml.cs">
       <DependentUpon>BookAuthorEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookEditorWindow.xaml.cs">
+      <DependentUpon>BookEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\BookTypeEditorWindow.xaml.cs">
       <DependentUpon>BookTypeEditorWindow.xaml</DependentUpon>

@@ -42,6 +42,8 @@ namespace BookManager.DataObjects
         private string _bookTypeName;
         private string _bookPlacementName;
         private int _yearOfPublication;
+        private int _purchasedWhenYear;
+        private decimal _purchasedPrice;
         private string _isbnCode;
 
         #endregion
@@ -151,6 +153,32 @@ namespace BookManager.DataObjects
             }
         }
 
+        public int PurchasedWhenYear
+        {
+            get { return _purchasedWhenYear; }
+            set
+            {
+                if (_purchasedWhenYear != value)
+                {
+                    _purchasedWhenYear = value;
+                    OnPropertyChanged("PurchasedWhenYear");
+                }
+            }
+        }
+
+        public decimal PurchasedPrice
+        {
+            get { return _purchasedPrice; }
+            set
+            {
+                if (_purchasedPrice != value)
+                {
+                    _purchasedPrice = value;
+                    OnPropertyChanged("PurchasedPrice");
+                }
+            }
+        }
+
         public string IsbnCode
         {
             get { return _isbnCode; }
@@ -189,6 +217,8 @@ namespace BookManager.DataObjects
             if (BookPublisherName != source.BookPublisherName) return true;
             if (BookTypeName != source.BookTypeName) return true;
             if (YearOfPublication != source.YearOfPublication) return true;
+            if (PurchasedWhenYear != source.PurchasedWhenYear) return true;
+            if (PurchasedPrice != source.PurchasedPrice) return true;
             if (IsbnCode != source.IsbnCode) return true;
             if (BookPlacementName != source.BookPlacementName) return true;
 

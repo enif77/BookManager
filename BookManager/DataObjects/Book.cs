@@ -39,10 +39,10 @@ namespace BookManager.DataObjects
         private int _bookGenreId;
         private int _bookPublisherId;
         private int _bookTypeId;
+        private int _bookPlacementId;
 
         private int _yearOfPublication;
         private string _isbnCode;
-        private int _bookPlacementId;
         private int _pagesCount;
         private string _dimensions;
 
@@ -52,22 +52,6 @@ namespace BookManager.DataObjects
         
         private string _resourcesDir;
         private string _thumbnailName;
-
-        #endregion
-
-
-        #region ctor
-
-        public Book()
-        {
-            // TODO: Do not set String.Empty to nullable properties.
-            IsbnCode = String.Empty;
-            Dimensions = String.Empty;
-            PurchasedWhere = String.Empty;
-            ResourcesDir = String.Empty;
-            ThumbnailName = String.Empty;
-            Description = String.Empty;
-        }
 
         #endregion
 
@@ -142,6 +126,20 @@ namespace BookManager.DataObjects
             }
         }
 
+        [DbColumn("BookPlacementId")]
+        public int BookPlacementId
+        {
+            get { return _bookPlacementId; }
+            set
+            {
+                if (_bookPlacementId != value)
+                {
+                    _bookPlacementId = value;
+                    OnPropertyChanged("BookPlacementId");
+                }
+            }
+        }
+
         [DbColumn("YearOfPublication")]
         public int YearOfPublication
         {
@@ -169,21 +167,7 @@ namespace BookManager.DataObjects
                 }
             }
         }
-
-        [DbColumn("BookPlacementId")]
-        public int BookPlacementId
-        {
-            get { return _bookPlacementId; }
-            set
-            {
-                if (_bookPlacementId != value)
-                {
-                    _bookPlacementId = value;
-                    OnPropertyChanged("BookPlacementId");
-                }
-            }
-        }
-
+           
         [DbColumn("PagesCount")]
         public int PagesCount
         {

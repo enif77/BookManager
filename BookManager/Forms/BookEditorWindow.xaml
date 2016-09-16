@@ -1,0 +1,311 @@
+﻿<Window x:Class="BookManager.Forms.BookEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookManager.Forms"
+        xmlns:businessObjects="clr-namespace:BookManager.DataObjects"
+        mc:Ignorable="d"
+        Title="Book Manager - Book Editor" Height="580" Width="530">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Margin="1" Content="Name" />
+        <TextBox 
+            Grid.Column="1" 
+            Grid.Row="0" 
+            Margin="1"
+            Text="{Binding Path=Name, Mode=TwoWay}"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Author"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ComboBox 
+                    Margin="1" 
+                    Width="300"
+                    x:Name="BookAuthorComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookAuthorId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:Book.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="..."
+                ToolTip="Show or edit book author."
+                Click="EditBookAuthor_OnClick"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="+"
+                ToolTip="Add new book author."
+                Click="NewBookAuthor_OnClick"/>
+        </StackPanel>
+
+        <Label Grid.Row="2" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Category"/>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ComboBox 
+                    Margin="1" 
+                    Width="300"
+                    x:Name="BookCategoryComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookCategoryId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookCategory.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="..."
+                ToolTip="Show or edit book category."
+                Click="EditBookCategory_OnClick"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="+"
+                ToolTip="Add new book category."
+                Click="NewBookCategory_OnClick"/>
+        </StackPanel>
+
+        <Label Grid.Row="3" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Genre"/>
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ComboBox 
+                    Margin="1" 
+                    Width="300"
+                    x:Name="BookGenreComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookGenreId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookGenre.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="..."
+                ToolTip="Show or edit book genre."
+                Click="EditBookGenre_OnClick"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="+"
+                ToolTip="Add new book genre."
+                Click="NewBookGenre_OnClick"/>
+        </StackPanel>
+
+        <Label Grid.Row="4" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Publisher"/>
+        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ComboBox 
+                    Margin="1" 
+                    Width="300"
+                    x:Name="BookPublisherComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookPublisherId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookPublisher.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="..."
+                ToolTip="Show or edit book publisher."
+                Click="EditBookPublisher_OnClick"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="+"
+                ToolTip="Add new book publisher."
+                Click="NewBookPublisher_OnClick"/>
+        </StackPanel>
+
+        <Label Grid.Row="5" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Type"/>
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ComboBox 
+                    Margin="1" 
+                    Width="300"
+                    x:Name="BookTypeComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookTypeId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookType.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="..."
+                ToolTip="Show or edit book type."
+                Click="EditBookType_OnClick"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="+"
+                ToolTip="Add new book type."
+                Click="NewBookType_OnClick"/>
+        </StackPanel>
+
+        <Label Grid.Row="6" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Placement"/>
+        <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ComboBox 
+                    Margin="1" 
+                    Width="300"
+                    x:Name="BookPlacementComboBox" 
+                    DisplayMemberPath="Name" 
+                    SelectedValuePath="Id" 
+                    SelectedValue="{Binding Path=BookPlacementId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookPlacement.OptionalValue}}" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="..."
+                ToolTip="Show or edit book placement."
+                Click="EditBookPlacement_OnClick"/>
+            <Button 
+                Margin="1" 
+                Width="30" 
+                FontWeight="ExtraBold" 
+                Content="+"
+                ToolTip="Add new book placement."
+                Click="NewBookPlacement_OnClick"/>
+        </StackPanel>
+
+        <Label Grid.Row="7" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Year of Publication"/>
+        <TextBox
+            x:Name="YearOfPublicationTextBox" 
+            Grid.Row="7" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=YearOfPublication, Mode=TwoWay}"
+            Width="120" 
+            HorizontalAlignment="Left" />
+
+        <Label Grid.Row="8" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Purchased when (year)"/>
+        <TextBox
+            x:Name="PurchasedWhenYearTextBox" 
+            Grid.Row="8" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=PurchasedWhenYear, Mode=TwoWay}"
+            Width="120" 
+            HorizontalAlignment="Left" />
+
+        <Label Grid.Row="9" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Purchased where"/>
+        <TextBox
+            x:Name="PurchasedWhereTextBox" 
+            Grid.Row="9" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=PurchasedWhere, Mode=TwoWay}"
+            Width="350" 
+            HorizontalAlignment="Left" />
+
+        <Label Grid.Row="10" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Purchased price"/>
+        <TextBox
+            x:Name="PurchasePriceTextBox" 
+            Grid.Row="10" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=PurchasedPrice, Mode=TwoWay}"
+            Width="120" 
+            HorizontalAlignment="Left" />
+       
+        <Label Grid.Row="11" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="ISBN"/>
+        <TextBox
+            x:Name="IsbnCodeTextBox" 
+            Grid.Row="11" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=IsbnCode, Mode=TwoWay}"
+            Width="220" 
+            HorizontalAlignment="Left" />
+
+        <Label Grid.Row="12" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Number of Pages"/>
+        <TextBox
+            x:Name="PagesCountTextBox" 
+            Grid.Row="12" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=PagesCount, Mode=TwoWay}"
+            Width="120" 
+            HorizontalAlignment="Left" />
+
+        <Label Grid.Row="13" Grid.Column="0" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Dimensions"/>
+        <TextBox
+            x:Name="DimensionsTextBox" 
+            Grid.Row="13" Grid.Column="1" 
+            Margin="1" 
+            VerticalAlignment="Center"
+            Text="{Binding Path=Dimensions, Mode=TwoWay}"
+            Width="350" 
+            HorizontalAlignment="Left" />
+        
+        <Label Grid.Column="0" Grid.Row="14" Margin="1" Content="Description" />
+        <TextBox 
+            Grid.Column="1" 
+            Grid.Row="14" 
+            Width="350"
+            HorizontalAlignment="Left"
+            Margin="1"
+            MinLines="5"
+            MaxLines="5"
+            AcceptsReturn="True"
+            Text="{Binding Path=Description, Mode=TwoWay}"/>
+
+        <StackPanel 
+            Grid.Column="1" Grid.Row="16" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Right">
+
+            <Button 
+                Margin="1" 
+                Width="100" 
+                Background="DarkSeaGreen" 
+                Foreground="WhiteSmoke" 
+                FontWeight="ExtraBold" 
+                Content="Save"
+                Click="Save_OnClick"/>
+
+            <Button 
+                Margin="10, 1, 20, 1" 
+                Width="100" 
+                Foreground="Red" 
+                Content="Cancel"
+                Click="Cancel_OnClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

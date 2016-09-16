@@ -33,20 +33,6 @@ namespace BookManager.DataObjects
     [DbTable("BookPlacement")]
     public sealed class BookPlacement : ALookupDataObject<BookPlacement>
     {           
-        #region ctor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public BookPlacement()
-        {
-            // TODO: Do not set String.Empty to nullable properties.
-            Description = String.Empty;
-        }
-
-        #endregion
-
-
         [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
         public override string Description
         {

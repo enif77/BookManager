@@ -339,13 +339,13 @@ namespace BookManager
 
         private void AddBook()
         {
-            //var obj = new Book();
-            //if (BookEditor.Open(Gdo, obj))
-            //{
-            //    Registry.Get<BookDataLayer>().Save(obj);
+            var obj = new Book();
+            if (BookEditorWindow.Open(Gdo, obj))
+            {
+                Registry.Get<BookDataLayer>().Save(obj);
 
-            //    Update();
-            //}
+                Update();
+            }
         }
                              
         private void EditBook()
@@ -367,12 +367,12 @@ namespace BookManager
                 return;
             }
 
-            //if (BookEditor.Open(Gdo, entity))
-            //{
-            //    Registry.Get<BookDataLayer>().Save(entity);
+            if (BookEditorWindow.Open(Gdo, entity))
+            {
+                Registry.Get<BookDataLayer>().Save(entity);
 
-            //    Update();
-            //}
+                Update();
+            }
         }
 
 

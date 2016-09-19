@@ -48,6 +48,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -111,6 +112,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\ExtendedObservableCollection.cs" />
+    <Compile Include="Core\ImagePreview.cs" />
+    <Compile Include="Core\PathAndFileHelper.cs" />
+    <Compile Include="Core\TreeItem.cs" />
     <Compile Include="DataLayer\BookAuthorDataLayer.cs" />
     <Compile Include="DataLayer\BookCategoryDataLayer.cs" />
     <Compile Include="DataLayer\BookDataLayer.cs" />

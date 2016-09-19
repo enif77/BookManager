@@ -5,12 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookManager.Forms"
         xmlns:businessObjects="clr-namespace:BookManager.DataObjects"
+        xmlns:converters="clr-namespace:BookManager.Forms.Converters"
+        xmlns:Core="clr-namespace:BookManager.Core"
         mc:Ignorable="d"
-        Title="Book Manager - Book Editor" Height="580" Width="530">
-    
+        Title="Book Manager - Book Editor" Height="580" Width="800">
+
+    <Window.Resources>
+        <HierarchicalDataTemplate 
+            DataType="{x:Type Core:DirectoryItem}"
+            ItemsSource="{Binding Items}">
+
+            <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" />
+        </HierarchicalDataTemplate>
+
+        <DataTemplate 
+            DataType="{x:Type Core:FileItem}">
+
+            <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" />
+        </DataTemplate>
+
+        <converters:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="140" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="380" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -285,6 +306,122 @@
             MaxLines="5"
             AcceptsReturn="True"
             Text="{Binding Path=Description, Mode=TwoWay}"/>
+
+
+        <GroupBox
+            Grid.Column="3"
+            Grid.Row="0"
+            Grid.RowSpan="18"
+            Header="Documents">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBox Margin="1, 4, 1, 1" Width="190" VerticalAlignment="Top" ToolTip="Documents are in the directory..." Text="{Binding Path=ResourcesDir, Mode=TwoWay}"/>
+                    <Button Margin="1, 4, 1, 1" Width="30" VerticalAlignment="Top" FontWeight="ExtraBold" Content="..." ToolTip="Show the documents directory..." Click="ShowResourcesDir_OnClick"/>
+                    <Button Margin="4, 4, 1, 1" Width="30" VerticalAlignment="Top" FontWeight="ExtraBold" Content="+" ToolTip="Select the documents directory..." Click="SetResourcesDir_OnClick"/>
+                </StackPanel>
+
+                <TabControl Grid.Row="2">
+                    <TabItem Header="Preview">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Image Grid.Row="0" x:Name="_previewImage" Margin="1" Width="200" Height="200" Stretch="Uniform" />
+                            <Label Grid.Row="2" x:Name="_previewName" Content="&lt;Documents&gt;\Thumbnail.jpg" FontStyle="Italic" IsEnabled="False"/>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Images">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ListView 
+                                x:Name="_imagesListView"
+                                Grid.Row="0"
+                                Margin="1"
+                                Width="Auto"
+                                Height="330"
+                                VerticalAlignment="Stretch"
+                                SelectionChanged="ImagesListView_OnSelectionChanged">
+
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <EventSetter Event="MouseDoubleClick" Handler="ImagesListView_OnDoubleClick" />
+                                    </Style>
+                                </ListView.Resources>
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Image Source="{Binding Path=Image}" Width="200" Height="200" Stretch="Uniform" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <Button 
+                                x:Name="_imagesButton"
+                                Grid.Row="2" 
+                                Content="Set as preview" 
+                                Width="120"
+                                HorizontalAlignment="Right"
+                                IsEnabled="False"
+                                Click="ImagesButton_OnClick"/>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Files">
+                        <Grid 
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TreeView
+                                Grid.Row="0"
+                                x:Name="DirectoriesTreeView"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Width="Auto"
+                                Height="330">
+
+                                <TreeView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type TreeViewItem}">
+                                        <EventSetter Event="MouseDoubleClick" Handler="DirectoriesTreeView_OnItemMouseDoubleClick" />
+                                    </Style>
+                                </TreeView.ItemContainerStyle>
+                            </TreeView>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+                <Button Grid.Row="6" Width="100" HorizontalAlignment="Right" Margin="4" Content="Obnovit náhled" Click="RefreshPreviewButton_OnClick"/>
+            </Grid>
+        </GroupBox>
+
+
 
         <StackPanel 
             Grid.Column="1" Grid.Row="16" 

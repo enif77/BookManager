@@ -24,11 +24,15 @@ namespace BookManager.Forms
 {
     using System;
     using System.ComponentModel;
+    using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Media.Imaging;
     using System.Windows.Threading;
+
+    using BookManager.Core;
 
 
     /// <summary>
@@ -36,6 +40,29 @@ namespace BookManager.Forms
     /// </summary>
     public static class UIHelper
     {
+        /// <summary>
+        /// Loads an image into a preview controll.
+        /// </summary>
+        /// <param name="resourcesDir">A directory containing an image. Can be empty or null.</param>
+        /// <param name="fileName">The image file name. Can be empty or null.</param>
+        /// <param name="previewDisplay">The preview controll. Can be null.</param>
+        /// <param name="previewDescription">The preview description controll. Can be null.</param>
+        public static void LoadPreviewImage(string resourcesDir, string fileName, Image previewDisplay, Label previewDescription)
+        {
+            if (String.IsNullOrWhiteSpace(resourcesDir))
+            {
+                resourcesDir = App.DataDirectoryPath;
+            }
+
+            var imageName = String.IsNullOrWhiteSpace(fileName)
+                ? "Thumbnail.jpg"
+                : fileName;
+            var imgagePath = Path.Combine(resourcesDir, imageName);
+
+            if (previewDisplay != null) previewDisplay.Source = File.Exists(imgagePath) ? ImagePreview.LoadImage(imgagePath) : new BitmapImage();
+            if (previewDescription != null) previewDescription.Content = "<Documents>\\" + imageName;
+        }
+
         /// <summary>
         /// Invokes a method, if it is required.
         /// </summary>

@@ -23,10 +23,14 @@ freely, subject to the following restrictions:
 namespace BookManager.Forms
 {
     using System;
+    using System.IO;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Injektor;
 
+    using BookManager.Core;
     using BookManager.DataObjects;
 
 
@@ -92,6 +96,7 @@ namespace BookManager.Forms
                     : String.Format("Book Manager - Book Edit {0}", dataObject.Id)
             };
 
+            dialog.LoadPreview();
             dialog.ShowDialog();
 
             return dialog.DialogResult.GetValueOrDefault();
@@ -233,5 +238,91 @@ namespace BookManager.Forms
             }
         }
 
+
+
+        private void ShowResourcesDir_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (PathAndFileHelper.IsPathValid(DataObject.ResourcesDir))
+            {
+                System.Diagnostics.Process.Start(DataObject.ResourcesDir);
+            }
+        }
+
+        private void SetResourcesDir_OnClick(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog() { SelectedPath = DataObject.ResourcesDir })
+            {
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    //DataObject.ResourcesDir = PathAndFileHelper.GetRelativePath(App.DataDirectoryPath, dialog.SelectedPath);
+                    DataObject.ResourcesDir = dialog.SelectedPath;
+                }
+            }
+        }
+
+
+        private void ImagesListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _imagesButton.IsEnabled = _imagesListView.SelectedItems.Count > 0;
+        }
+
+        private void ImagesListView_OnDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var image = ((ListViewItem)sender).Content as ImagePreview;
+            if (image == null)
+            {
+                return;
+            }
+
+            PathAndFileHelper.OpenFile(image.Path);
+        }
+
+        private void ImagesButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var imagePreview = _imagesListView.SelectedItem as ImagePreview;
+            if (imagePreview == null)
+            {
+                return;
+            }
+
+            DataObject.ThumbnailName = Path.GetFileName(imagePreview.Path);
+            UIHelper.LoadPreviewImage(DataObject.ResourcesDir, DataObject.ThumbnailName, _previewImage, _previewName);
+        }
+
+
+        private void DirectoriesTreeView_OnItemMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as TreeViewItem;
+            if (item == null) return;
+
+            if (!item.IsSelected)
+            {
+                return;
+            }
+
+            TreeItem.OpenFile((TreeItem)item.DataContext);
+        }
+
+
+        private void RefreshPreviewButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            LoadPreview();
+        }
+
+
+        private void LoadPreview()
+        {
+            if (PathAndFileHelper.IsPathValid(DataObject.ResourcesDir))
+            {
+                // Preview.
+                UIHelper.LoadPreviewImage(DataObject.ResourcesDir, DataObject.ThumbnailName, _previewImage, _previewName);
+
+                // Images.
+                _imagesListView.ItemsSource = ImagePreview.LoadImages(DataObject.ResourcesDir);
+
+                // Files.
+                DirectoriesTreeView.ItemsSource = ItemProvider.GetItems(DataObject.ResourcesDir);
+            }
+        }
     }
 }

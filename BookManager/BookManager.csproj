@@ -111,10 +111,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\ExtendedObservableCollection.cs" />
-    <Compile Include="Core\ImagePreview.cs" />
-    <Compile Include="Core\PathAndFileHelper.cs" />
-    <Compile Include="Core\TreeItem.cs" />
     <Compile Include="DataLayer\BookAuthorDataLayer.cs" />
     <Compile Include="DataLayer\BookCategoryDataLayer.cs" />
     <Compile Include="DataLayer\BookDataLayer.cs" />
@@ -198,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookManagerCore\BookManagerCore.csproj">
+      <Project>{ce987d5c-28f8-40ed-80d1-ef723a356c4c}</Project>
+      <Name>BookManagerCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

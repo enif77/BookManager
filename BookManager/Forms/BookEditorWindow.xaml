@@ -6,20 +6,20 @@
         xmlns:local="clr-namespace:BookManager.Forms"
         xmlns:businessObjects="clr-namespace:BookManager.DataObjects"
         xmlns:converters="clr-namespace:BookManager.Forms.Converters"
-        xmlns:Core="clr-namespace:BookManager.Core"
+        xmlns:core="clr-namespace:BookManager.Core;assembly=BookManagerCore"
         mc:Ignorable="d"
         Title="Book Manager - Book Editor" Height="580" Width="800">
 
     <Window.Resources>
         <HierarchicalDataTemplate 
-            DataType="{x:Type Core:DirectoryItem}"
+            DataType="{x:Type core:DirectoryItem}"
             ItemsSource="{Binding Items}">
 
             <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" />
         </HierarchicalDataTemplate>
 
         <DataTemplate 
-            DataType="{x:Type Core:FileItem}">
+            DataType="{x:Type core:FileItem}">
 
             <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" />
         </DataTemplate>

@@ -7,7 +7,7 @@
         xmlns:converters="clr-namespace:BookManager.Forms.Converters"
         xmlns:dataObjects="clr-namespace:BookManager.DataObjects;assembly=BookManagerDataObjects"
         mc:Ignorable="d"
-        Title="Book Manager v 1.0.0" 
+        Title="Book Manager v1.0.0" 
         Height="600" 
         Width="1024"
         ResizeMode="CanResizeWithGrip" 

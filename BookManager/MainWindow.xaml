@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookManager"
         xmlns:converters="clr-namespace:BookManager.Forms.Converters"
-        xmlns:businessObjects="clr-namespace:BookManager.DataObjects"
+        xmlns:dataObjects="clr-namespace:BookManager.DataObjects;assembly=BookManagerDataObjects"
         mc:Ignorable="d"
         Title="Book Manager v 1.0.0" 
         Height="600" 
@@ -120,7 +120,7 @@
                     x:Name="BookAuthorComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookAuthorId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookAuthor.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookAuthorId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookAuthor.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
 
@@ -132,7 +132,7 @@
                     x:Name="BookPlacementComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookPlacementId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookPlacement.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookPlacementId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookPlacement.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             </Grid>

@@ -31,6 +31,7 @@ namespace BookManager.Forms
     using Injektor;
 
     using BookManager.Core;
+    using BookManager.DataLayer;
     using BookManager.DataObjects;
 
 

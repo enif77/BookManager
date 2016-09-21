@@ -19,7 +19,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  
  */
- 
+
 namespace BookManager.Forms
 {
     using System;
@@ -30,6 +30,7 @@ namespace BookManager.Forms
     using SimpleDb.Shared;
 
     using BookManager.DataObjects;
+    using BookManager.DataLayer;
 
 
     public static class UIShared

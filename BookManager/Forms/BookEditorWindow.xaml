@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookManager.Forms"
-        xmlns:businessObjects="clr-namespace:BookManager.DataObjects"
         xmlns:converters="clr-namespace:BookManager.Forms.Converters"
         xmlns:core="clr-namespace:BookManager.Core;assembly=BookManagerCore"
+        xmlns:dataObjects="clr-namespace:BookManager.DataObjects;assembly=BookManagerDataObjects"
         mc:Ignorable="d"
         Title="Book Manager - Book Editor" Height="580" Width="800">
 
@@ -71,7 +71,7 @@
                     x:Name="BookAuthorComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookAuthorId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:Book.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookAuthorId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:Book.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             <Button 
@@ -98,7 +98,7 @@
                     x:Name="BookCategoryComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookCategoryId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookCategory.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookCategoryId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookCategory.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             <Button 
@@ -125,7 +125,7 @@
                     x:Name="BookGenreComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookGenreId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookGenre.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookGenreId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookGenre.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             <Button 
@@ -152,7 +152,7 @@
                     x:Name="BookPublisherComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookPublisherId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookPublisher.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookPublisherId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookPublisher.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             <Button 
@@ -179,7 +179,7 @@
                     x:Name="BookTypeComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookTypeId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookType.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookTypeId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookType.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             <Button 
@@ -206,7 +206,7 @@
                     x:Name="BookPlacementComboBox" 
                     DisplayMemberPath="Name" 
                     SelectedValuePath="Id" 
-                    SelectedValue="{Binding Path=BookPlacementId, Mode=TwoWay, TargetNullValue={x:Static businessObjects:BookPlacement.OptionalValue}}" 
+                    SelectedValue="{Binding Path=BookPlacementId, Mode=TwoWay, TargetNullValue={x:Static dataObjects:BookPlacement.OptionalValue}}" 
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Left"/>
             <Button 

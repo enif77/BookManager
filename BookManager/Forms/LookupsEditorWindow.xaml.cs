@@ -26,7 +26,7 @@ namespace BookManager.Forms
     using System.Windows;
     using System.Windows.Input;
 
-    using BookManager.DataObjects;
+    using BookManager.DataLayer;
 
 
     /// <summary>

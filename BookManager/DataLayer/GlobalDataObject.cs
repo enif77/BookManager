@@ -20,7 +20,7 @@ freely, subject to the following restrictions:
  
  */
 
-namespace BookManager.DataObjects
+namespace BookManager.DataLayer
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
@@ -29,7 +29,7 @@ namespace BookManager.DataObjects
     using Injektor;
 
     using BookManager.Core;
-    using BookManager.DataLayer;
+    using BookManager.DataObjects;
 
 
     public class GlobalDataObject :

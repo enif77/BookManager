@@ -111,16 +111,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataLayer\BookAuthorDataLayer.cs" />
-    <Compile Include="DataLayer\BookCategoryDataLayer.cs" />
-    <Compile Include="DataLayer\BookDataLayer.cs" />
-    <Compile Include="DataLayer\BookPlacementDataLayer.cs" />
-    <Compile Include="DataLayer\BookGenreDataLayer.cs" />
-    <Compile Include="DataLayer\BookPublisherDataLayer.cs" />
-    <Compile Include="DataLayer\BookTypeDataLayer.cs" />
-    <Compile Include="DataLayer\ConfigurationDataLayer.cs" />
-    <Compile Include="DataLayer\GlobalDataObject.cs" />
-    <Compile Include="DataLayer\Initializer.cs" />
     <Compile Include="Forms\BookPublisherEditorWindow.xaml.cs">
       <DependentUpon>BookPublisherEditorWindow.xaml</DependentUpon>
     </Compile>
@@ -190,6 +180,10 @@
     <ProjectReference Include="..\BookManagerCore\BookManagerCore.csproj">
       <Project>{ce987d5c-28f8-40ed-80d1-ef723a356c4c}</Project>
       <Name>BookManagerCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookManagerDataLayer\BookManagerDataLayer.csproj">
+      <Project>{dff8336a-5dbc-4d68-a5c0-54b92a1d43f4}</Project>
+      <Name>BookManagerDataLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookManagerDataObjects\BookManagerDataObjects.csproj">
       <Project>{736f18cb-d74c-4a1b-bb7e-37e976b09428}</Project>

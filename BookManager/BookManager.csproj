@@ -155,6 +155,7 @@
     <Compile Include="Forms\Converters\BoolToStringConverter.cs" />
     <Compile Include="Forms\Converters\ReverseBoolConverter.cs" />
     <Compile Include="Forms\DialogResultStateType.cs" />
+    <Compile Include="Forms\ImagePreview.cs" />
     <Compile Include="Forms\LookupsEditorWindow.xaml.cs">
       <DependentUpon>LookupsEditorWindow.xaml</DependentUpon>
     </Compile>

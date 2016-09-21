@@ -20,13 +20,15 @@ freely, subject to the following restrictions:
  
  */
 
-namespace BookManager.Core
+namespace BookManager.Forms
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
+
+    using BookManager.Core;
 
 
     public class ImagePreview

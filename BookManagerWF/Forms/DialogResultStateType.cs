@@ -20,36 +20,22 @@ freely, subject to the following restrictions:
  
  */
 
-namespace BookManager.DataObjects
+namespace BookManagerWF.Forms
 {
-    using System;
+    #region constants
 
-    using SimpleDb.Shared;
+    public enum DialogResultStateType
+    {
+        /// <summary>
+        /// Save/use changes.
+        /// </summary>
+        Ok,
 
-
-    /// <summary>
-    /// A book placement.
-    /// </summary>
-    [DbTable("BookPlacement")]
-    public sealed class BookPlacement : ALookupDataObject<BookPlacement>
-    {           
-        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
-        public override string Description
-        {
-            get { return base.Description; }
-            set { base.Description = value; }
-        }
-
-
-        public override void Validate()
-        {
-            base.Validate();
-
-            if (String.IsNullOrWhiteSpace(Name))
-            {
-                // TODO: Move this to the SimpleDb as NonEmpty column attribute.
-                throw new ValidationException("The Name property can not be empty.");
-            }
-        }
+        /// <summary>
+        /// Changes canceled.
+        /// </summary>
+        Cancel
     }
+
+    #endregion
 }

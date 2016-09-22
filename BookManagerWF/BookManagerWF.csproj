@@ -52,6 +52,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BookPlacementEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookPlacementEditorForm.Designer.cs">
+      <DependentUpon>BookPlacementEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookPublisherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookPublisherForm.Designer.cs">
+      <DependentUpon>BookPublisherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookGenreEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookGenreEditorForm.Designer.cs">
+      <DependentUpon>BookGenreEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookCategoryEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookCategoryEditorForm.Designer.cs">
+      <DependentUpon>BookCategoryEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookAuthorEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookAuthorEditorForm.Designer.cs">
+      <DependentUpon>BookAuthorEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookTypeEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookTypeEditorForm.Designer.cs">
+      <DependentUpon>BookTypeEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogResultStateType.cs" />
+    <Compile Include="Forms\UnhandledErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UnhandledErrorForm.Designer.cs">
+      <DependentUpon>UnhandledErrorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +103,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\BookPlacementEditorForm.resx">
+      <DependentUpon>BookPlacementEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookPublisherForm.resx">
+      <DependentUpon>BookPublisherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookGenreEditorForm.resx">
+      <DependentUpon>BookGenreEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookCategoryEditorForm.resx">
+      <DependentUpon>BookCategoryEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookAuthorEditorForm.resx">
+      <DependentUpon>BookAuthorEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookTypeEditorForm.resx">
+      <DependentUpon>BookTypeEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnhandledErrorForm.resx">
+      <DependentUpon>UnhandledErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,9 +163,7 @@
       <Name>BookManagerDataObjects</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

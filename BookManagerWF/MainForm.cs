@@ -20,6 +20,8 @@ freely, subject to the following restrictions:
  
  */
 
+using BookManagerWF.Forms;
+
 namespace BookManagerWF
 {
     using System;
@@ -101,5 +103,9 @@ namespace BookManagerWF
             e.Cancel = false;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BookTypeEditorForm.Open(new BookType());
+        }
     }
 }

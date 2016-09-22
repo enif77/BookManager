@@ -128,5 +128,16 @@ namespace BookManager.DataObjects
 
             return base.NeedsUpdate(source);
         }
+
+
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (String.IsNullOrWhiteSpace(Name))
+            {
+                throw new ValidationException("The Name property can not be empty. Enter at least a First name or a Last name.");
+            }
+        }
     }
 }

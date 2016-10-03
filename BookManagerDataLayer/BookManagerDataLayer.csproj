@@ -33,8 +33,12 @@
     <Reference Include="Injektor">
       <HintPath>..\BookManager\Dependencies\Injektor\Injektor.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleDb">
+    <Reference Include="SimpleDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BookManager\Dependencies\SimpleDb\SimpleDb.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleDbFiles">
+      <HintPath>..\BookManager\Dependencies\SimpleDb\SimpleDbFiles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

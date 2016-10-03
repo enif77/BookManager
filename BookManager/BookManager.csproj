@@ -41,8 +41,12 @@
     <Reference Include="Injektor">
       <HintPath>Dependencies\Injektor\Injektor.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleDb">
+    <Reference Include="SimpleDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\SimpleDb\SimpleDb.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleDbFiles">
+      <HintPath>Dependencies\SimpleDb\SimpleDbFiles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

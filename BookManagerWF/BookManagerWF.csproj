@@ -63,11 +63,17 @@
     <Compile Include="Forms\BookPlacementEditorForm.Designer.cs">
       <DependentUpon>BookPlacementEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BookPublisherForm.cs">
+    <Compile Include="Forms\LookupEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BookPublisherForm.Designer.cs">
-      <DependentUpon>BookPublisherForm.cs</DependentUpon>
+    <Compile Include="Forms\BookPublisherEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookPublisherForm_old.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookPublisherForm_old.Designer.cs">
+      <DependentUpon>BookPublisherForm_old.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BookGenreEditorForm.cs">
       <SubType>Form</SubType>
@@ -93,6 +99,12 @@
     <Compile Include="Forms\BookTypeEditorForm.Designer.cs">
       <DependentUpon>BookTypeEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Controls\CancelButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\SaveButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\DialogResultStateType.cs" />
     <Compile Include="Forms\UnhandledErrorForm.cs">
       <SubType>Form</SubType>
@@ -111,8 +123,8 @@
     <EmbeddedResource Include="Forms\BookPlacementEditorForm.resx">
       <DependentUpon>BookPlacementEditorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookPublisherForm.resx">
-      <DependentUpon>BookPublisherForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\BookPublisherForm_old.resx">
+      <DependentUpon>BookPublisherForm_old.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BookGenreEditorForm.resx">
       <DependentUpon>BookGenreEditorForm.cs</DependentUpon>

@@ -20,24 +20,26 @@ freely, subject to the following restrictions:
  
  */
 
-namespace BookManager.DataObjects
+namespace BookManagerWF.Forms.Controls
 {
-    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
 
-    using SimpleDb.Shared;
 
-
-    /// <summary>
-    /// A book publisher.
-    /// </summary>
-    [DbTable("BookPublisher")]
-    public sealed class BookPublisher : ALookupDataObject<BookPublisher>
+    public class SaveButton : Button
     {
-        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
-        public override string Description
+        public SaveButton(Control parent, Font baseDialogFont)
         {
-            get { return base.Description; }
-            set { base.Description = value; }
+            Parent = parent;
+            BackColor = Color.FromArgb(0, 192, 0);
+            Font = new Font(baseDialogFont.Name, 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ForeColor = Color.White;
+            Text = "Save";
+            UseVisualStyleBackColor = false;
+            Padding = new Padding(baseDialogFont.Height / 2);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            MinimumSize = new Size(100, 10);
         }
     }
 }

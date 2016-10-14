@@ -1,6 +1,6 @@
 ﻿namespace BookManagerWF.Forms
 {
-    partial class BookPublisherEditorForm
+    partial class BookPublisherEditorForm_old
     {
         /// <summary>
         /// Required designer variable.

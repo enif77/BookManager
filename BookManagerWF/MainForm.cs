@@ -105,7 +105,8 @@ namespace BookManagerWF
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BookTypeEditorForm.Open(new BookType());
+            //BookTypeEditorForm.Open(new BookType());
+            BookPublisherEditorForm.Open(new BookPublisher());
         }
     }
 }

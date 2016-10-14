@@ -293,17 +293,5 @@ namespace BookManager.DataObjects
 
             return base.NeedsUpdate(source);
         }
-
-
-        public override void Validate()
-        {
-            base.Validate();
-
-            if (String.IsNullOrWhiteSpace(Name))
-            {
-                // TODO: Move this to the SimpleDb as NonEmpty column attribute.
-                throw new ValidationException("The Name property can not be empty.");
-            }
-        }
     }
 }

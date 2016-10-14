@@ -20,24 +20,20 @@ freely, subject to the following restrictions:
  
  */
 
-namespace BookManager.DataObjects
+namespace BookManagerWF.Forms
 {
-    using System;
-
-    using SimpleDb.Shared;
+    using BookManager.DataObjects;
 
 
-    /// <summary>
-    /// A book publisher.
-    /// </summary>
-    [DbTable("BookPublisher")]
-    public sealed class BookPublisher : ALookupDataObject<BookPublisher>
+    public partial class BookPublisherEditorForm : LookupEditorForm<BookPublisher>
     {
-        [DbColumn("Description", Int32.MaxValue, DbColumnAttribute.ColumnOptions.Nullable)]
-        public override string Description
+        #region public methods
+
+        public static bool Open(BookPublisher dataObject)
         {
-            get { return base.Description; }
-            set { base.Description = value; }
+            return Open(dataObject, "Book Publisher");
         }
+
+        #endregion
     }
 }

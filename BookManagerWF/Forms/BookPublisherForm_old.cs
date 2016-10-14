@@ -30,7 +30,7 @@ namespace BookManagerWF.Forms
     using BookManager.DataObjects;
 
 
-    public partial class BookPublisherEditorForm : Form
+    public partial class BookPublisherEditorForm_old : Form
     {
         #region properties
 
@@ -44,7 +44,7 @@ namespace BookManagerWF.Forms
 
         #region ctor
 
-        public BookPublisherEditorForm()
+        public BookPublisherEditorForm_old()
         {
             InitializeComponent();
 

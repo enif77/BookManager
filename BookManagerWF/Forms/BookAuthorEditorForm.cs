@@ -22,13 +22,11 @@ freely, subject to the following restrictions:
 
 namespace BookManagerWF.Forms
 {
-    using System.Drawing;
+    using System;
     using System.Windows.Forms;
 
     using BookManager.DataObjects;
-    using SimpleDb.Shared;
-    using System;
-
+    
 
     /// <summary>
     /// An example, how to override the LookupEditorForm.

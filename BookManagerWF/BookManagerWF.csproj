@@ -69,12 +69,6 @@
     <Compile Include="Forms\LookupEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BookAuthorEditorForm_old.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookAuthorEditorForm_old.Designer.cs">
-      <DependentUpon>BookAuthorEditorForm_old.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Controls\CancelButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -97,9 +91,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\BookAuthorEditorForm_old.resx">
-      <DependentUpon>BookAuthorEditorForm_old.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnhandledErrorForm.resx">
       <DependentUpon>UnhandledErrorForm.cs</DependentUpon>
     </EmbeddedResource>

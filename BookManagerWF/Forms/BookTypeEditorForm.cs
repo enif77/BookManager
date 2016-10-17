@@ -22,33 +22,19 @@ freely, subject to the following restrictions:
 
 namespace BookManagerWF.Forms
 {
-    using System;
-    using System.Windows.Forms;
-
-    using Injektor;
-
     using BookManager.DataObjects;
 
 
-    public partial class BookTypeEditorForm : Form
+    /// <summary>
+    /// An example, how to override the LookupEditorForm.
+    /// </summary>
+    public class BookTypeEditorForm : LookupEditorForm
     {
-        #region properties
-
-        public BookType DataObject
-        {
-            get; set;
-        }
-
-        #endregion
-
-
         #region ctor
 
-        public BookTypeEditorForm()
+        public BookTypeEditorForm(BookType dataObject, string dataObjectTitle) 
+            : base(dataObject, dataObjectTitle)
         {
-            InitializeComponent();
-
-            DialogResult = DialogResult.OK;
         }
 
         #endregion
@@ -58,67 +44,9 @@ namespace BookManagerWF.Forms
 
         public static bool Open(BookType dataObject)
         {
-            if (dataObject == null) throw new ArgumentNullException("dataObject");
-
-            var dialog = new BookTypeEditorForm()
-            {
-                DataObject = dataObject,
-                Owner = Registry.Get<MainForm>(),
-                StartPosition = FormStartPosition.CenterParent,
-                Text = (dataObject.Id <= 0)
-                    ? "Book Manager - New Book Type"
-                    : String.Format("Book Manager - Book Type Edit {0}", dataObject.Id)
-            };
-
-            dialog.ShowDialog();
-
-            return dialog.DialogResult == DialogResult.OK;
+            return Open(dataObject, "Book Type");
         }
 
         #endregion
-
-
-        private void SaveOperationButton_Click(object sender, EventArgs e)
-        {
-            if (SaveClick())
-            {
-                Close();
-            }
-        }
-
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            CancelClick();
-            Close();
-        }
-
-
-        private bool SaveClick()
-        {
-            try
-            {
-                DataObject.Name = NameTextBox.Text;
-                DataObject.Description = DescriptionTextBox.Text;
-
-                DataObject.Validate();
-            }
-            catch (Exception ex)
-            {
-                UnhandledErrorForm.Open(ex);
-
-                return false;
-            }
-
-            DialogResult = DialogResult.OK;
-
-            return true;
-        }
-
-
-        private void CancelClick()
-        {
-            DialogResult = DialogResult.Cancel;
-        }
     }
 }

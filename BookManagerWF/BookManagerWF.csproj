@@ -57,47 +57,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\BookPlacementEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookPlacementEditorForm.Designer.cs">
-      <DependentUpon>BookPlacementEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LookupEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookPublisherEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookPublisherForm_old.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookPublisherForm_old.Designer.cs">
-      <DependentUpon>BookPublisherForm_old.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\BookGenreEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookGenreEditorForm.Designer.cs">
-      <DependentUpon>BookGenreEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\BookCategoryEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookCategoryEditorForm.Designer.cs">
-      <DependentUpon>BookCategoryEditorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\BookAuthorEditorForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BookAuthorEditorForm.Designer.cs">
-      <DependentUpon>BookAuthorEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BookTypeEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BookTypeEditorForm.Designer.cs">
-      <DependentUpon>BookTypeEditorForm.cs</DependentUpon>
+    <Compile Include="Forms\BaseEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LookupEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookAuthorEditorForm_old.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookAuthorEditorForm_old.Designer.cs">
+      <DependentUpon>BookAuthorEditorForm_old.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Controls\CancelButton.cs">
       <SubType>Component</SubType>
@@ -112,6 +88,7 @@
     <Compile Include="Forms\UnhandledErrorForm.Designer.cs">
       <DependentUpon>UnhandledErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,23 +97,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\BookPlacementEditorForm.resx">
-      <DependentUpon>BookPlacementEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookPublisherForm_old.resx">
-      <DependentUpon>BookPublisherForm_old.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookGenreEditorForm.resx">
-      <DependentUpon>BookGenreEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookCategoryEditorForm.resx">
-      <DependentUpon>BookCategoryEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookAuthorEditorForm.resx">
-      <DependentUpon>BookAuthorEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookTypeEditorForm.resx">
-      <DependentUpon>BookTypeEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\BookAuthorEditorForm_old.resx">
+      <DependentUpon>BookAuthorEditorForm_old.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnhandledErrorForm.resx">
       <DependentUpon>UnhandledErrorForm.cs</DependentUpon>

@@ -22,33 +22,24 @@ freely, subject to the following restrictions:
 
 namespace BookManagerWF.Forms
 {
-    using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
-    using Injektor;
-
     using BookManager.DataObjects;
+    using SimpleDb.Shared;
+    using System;
 
 
-    public partial class BookAuthorEditorForm : Form
+    /// <summary>
+    /// An example, how to override the LookupEditorForm.
+    /// </summary>
+    public class BookAuthorEditorForm : LookupEditorForm
     {
-        #region properties
-
-        public BookAuthor DataObject
-        {
-            get; set;
-        }
-
-        #endregion
-
-
         #region ctor
 
-        public BookAuthorEditorForm()
+        public BookAuthorEditorForm(BookAuthor dataObject, string dataObjectTitle) 
+            : base(dataObject, dataObjectTitle)
         {
-            InitializeComponent();
-
-            DialogResult = DialogResult.OK;
         }
 
         #endregion
@@ -60,16 +51,9 @@ namespace BookManagerWF.Forms
         {
             if (dataObject == null) throw new ArgumentNullException("dataObject");
 
-            var dialog = new BookAuthorEditorForm()
-            {
-                DataObject = dataObject,
-                Owner = Registry.Get<MainForm>(),
-                StartPosition = FormStartPosition.CenterParent,
-                Text = (dataObject.Id <= 0)
-                    ? "Book Manager - New Author Type"
-                    : String.Format("Book Manager - Book Author Edit {0}", dataObject.Id)
-            };
+            var dialog = new BookAuthorEditorForm(dataObject, "Book Author");
 
+            dialog.LoadDataToControls();
             dialog.ShowDialog();
 
             return dialog.DialogResult == DialogResult.OK;
@@ -78,48 +62,43 @@ namespace BookManagerWF.Forms
         #endregion
 
 
-        private void SaveOperationButton_Click(object sender, EventArgs e)
+        public override void LoadDataToControls()
         {
-            if (SaveClick())
-            {
-                Close();
-            }
+            var dataObject = (BookAuthor)DataObject;
+
+            FirstNameTextBox.Text = dataObject.FirstName;
+            LastNameTextBox.Text = dataObject.LastName;
+            DescriptionTextBox.Text = dataObject.Description;
         }
 
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        public override void SaveDataToDataObject()
         {
-            CancelClick();
-            Close();
+            var dataObject = (BookAuthor)DataObject;
+
+            dataObject.FirstName = FirstNameTextBox.Text;
+            dataObject.LastName = LastNameTextBox.Text;
+            dataObject.Description = DescriptionTextBox.Text;
         }
 
 
-        private bool SaveClick()
+        protected override void InitializeComponent()
         {
-            try
-            {
-                DataObject.FirstName = FirstNameTextBox.Text;
-                DataObject.LastName = LastNameTextBox.Text;
-                DataObject.Description = DescriptionTextBox.Text;
+            // Main layout table.
+            var table = CreateLayoutTable(4);
 
-                DataObject.Validate();
-            }
-            catch (Exception ex)
-            {
-                UnhandledErrorForm.Open(ex);
+            table.SuspendLayout();
 
-                return false;
-            }
+            FirstNameTextBox = CreateTextboxWithLabel(table, 0, "First name", "FirstName");
+            LastNameTextBox = CreateTextboxWithLabel(table, 1, "Last name", "LastName");
+            DescriptionTextBox = CreateTextboxWithLabel(table, 2, "Note", "Description", null, true);
+            CreateButtons(table, 3);
 
-            DialogResult = DialogResult.OK;
-
-            return true;
+            table.ResumeLayout();
         }
+       
 
-
-        private void CancelClick()
-        {
-            DialogResult = DialogResult.Cancel;
-        }
+        private TextBox FirstNameTextBox;
+        private TextBox LastNameTextBox;
     }
 }

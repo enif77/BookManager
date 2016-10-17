@@ -19,9 +19,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  
  */
-
-using BookManagerWF.Forms;
-
+ 
 namespace BookManagerWF
 {
     using System;
@@ -32,6 +30,8 @@ namespace BookManagerWF
 
     using BookManager.DataLayer;
     using BookManager.DataObjects;
+
+    using BookManagerWF.Forms;
 
 
     public partial class MainForm : Form
@@ -106,7 +106,8 @@ namespace BookManagerWF
         private void button1_Click(object sender, EventArgs e)
         {
             //BookTypeEditorForm.Open(new BookType());
-            BookPublisherEditorForm.Open(new BookPublisher());
+            //LookupEditorForm.Open(new BookGenre(), "Book Genre");
+            BookAuthorEditorForm.Open(new BookAuthor() { FirstName = "Karel", LastName = "Novák" });
         }
     }
 }

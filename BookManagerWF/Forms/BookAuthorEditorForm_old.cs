@@ -30,11 +30,11 @@ namespace BookManagerWF.Forms
     using BookManager.DataObjects;
 
 
-    public partial class BookCategoryEditorForm : Form
+    public partial class BookAuthorEditorForm_old : Form
     {
         #region properties
 
-        public BookCategory DataObject
+        public BookAuthor DataObject
         {
             get; set;
         }
@@ -44,7 +44,7 @@ namespace BookManagerWF.Forms
 
         #region ctor
 
-        public BookCategoryEditorForm()
+        public BookAuthorEditorForm_old()
         {
             InitializeComponent();
 
@@ -56,18 +56,18 @@ namespace BookManagerWF.Forms
 
         #region public methods
 
-        public static bool Open(BookCategory dataObject)
+        public static bool Open(BookAuthor dataObject)
         {
             if (dataObject == null) throw new ArgumentNullException("dataObject");
 
-            var dialog = new BookCategoryEditorForm()
+            var dialog = new BookAuthorEditorForm_old()
             {
                 DataObject = dataObject,
                 Owner = Registry.Get<MainForm>(),
                 StartPosition = FormStartPosition.CenterParent,
                 Text = (dataObject.Id <= 0)
-                    ? "Book Manager - New Book Category"
-                    : String.Format("Book Manager - Book Category Edit {0}", dataObject.Id)
+                    ? "Book Manager - New Author Type"
+                    : String.Format("Book Manager - Book Author Edit {0}", dataObject.Id)
             };
 
             dialog.ShowDialog();
@@ -98,7 +98,8 @@ namespace BookManagerWF.Forms
         {
             try
             {
-                DataObject.Name = NameTextBox.Text;
+                DataObject.FirstName = FirstNameTextBox.Text;
+                DataObject.LastName = LastNameTextBox.Text;
                 DataObject.Description = DescriptionTextBox.Text;
 
                 DataObject.Validate();

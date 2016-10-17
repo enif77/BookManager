@@ -23,31 +23,21 @@ freely, subject to the following restrictions:
 namespace BookManagerWF.Forms
 {
     using System;
-    using System.Drawing;
     using System.Windows.Forms;
 
-    using Injektor;
-
-    using BookManagerWF.Forms.Controls;
     using SimpleDb.Shared;
 
-    public partial class LookupEditorForm<T> : Form where T : ILookup, IValidatable
+
+    public class LookupEditorForm : BaseEditorForm
     {
-        #region properties
-
-        public T DataObject
-        {
-            get; set;
-        }
-
-        #endregion
-
-
         #region ctor
 
-        public LookupEditorForm()
+        protected LookupEditorForm(ILookup dataObject, string dataObjectTitle)
+            : base(dataObject, dataObjectTitle)
         {
-            DialogResult = DialogResult.OK;
+            Text = (dataObject.Id <= 0)
+                ? ("Book Manager - New " + dataObjectTitle)
+                : String.Format("Book Manager - {0} Id:{1}", dataObjectTitle, dataObject.Id);
         }
 
         #endregion
@@ -55,160 +45,73 @@ namespace BookManagerWF.Forms
 
         #region public methods
 
-        protected static bool Open(T dataObject, string dataObjectTitle)
+        public static bool Open(ILookup dataObject, string dataObjectTitle)
         {
             if (dataObject == null) throw new ArgumentNullException("dataObject");
 
-            var dialog = CreateDialog(dataObject, dataObjectTitle);
-
-            // TODO: Automatic data binding.
-            dialog._nameTextBox.Text = dataObject.Name;
-            dialog._descriptionTextBox.Text = dataObject.Description;
-
+            var dialog = new LookupEditorForm(dataObject, dataObjectTitle);
+                        
+            dialog.LoadDataToControls();
             dialog.ShowDialog();
 
             return dialog.DialogResult == DialogResult.OK;
+        }
+         
+
+        public override void LoadDataToControls()
+        {
+            var dataObject = (ILookup)DataObject;
+
+            // TODO: Automatic data binding.
+            NameTextBox.Text = dataObject.Name;
+            DescriptionTextBox.Text = dataObject.Description;
+        }
+
+
+        public override void SaveDataToDataObject()
+        {
+            var dataObject = (ILookup)DataObject;
+
+            // TODO: Automatic data binding.
+            dataObject.Name = NameTextBox.Text;
+            dataObject.Description = DescriptionTextBox.Text;
+        }
+
+
+        public override void ValidateDataObject()
+        {
+            var dataObject = (IValidatable)DataObject;
+
+            dataObject.Validate();
         }
 
         #endregion
 
 
-        private TextBox _nameTextBox;
-        private TextBox _descriptionTextBox;
 
+        #region protected
 
-        private static LookupEditorForm<T> CreateDialog(T dataObject, string dataObjectTitle)
+        protected override void InitializeComponent()
         {
-            var dialog = new LookupEditorForm<T>()
-            {
-                DataObject = dataObject,
-                Owner = Registry.Get<MainForm>(),
-                StartPosition = FormStartPosition.CenterParent,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                AutoSize = true,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                Text = (dataObject.Id <= 0)
-                    ? ("Book Manager - New " + dataObjectTitle)
-                    : String.Format("Book Manager - {0} Id:{1}", dataObjectTitle, dataObject.Id)
-            };
-
-            var table = new TableLayoutPanel()
-            {
-                Parent = dialog,
-                Padding = new Padding(dialog.Font.Height),
-                AutoSize = true,
-                ColumnCount = 2,
-                RowCount = 3
-            };
+            var table = CreateLayoutTable(3);
 
             table.SuspendLayout();
 
-            var controlsMargin = dialog.Font.Height / 2;
-            var controlsMinWidth100 = new Size(100, 1);
-
-            table.Controls.Add(new Label()
-            {
-                AutoSize = true,
-                Margin = new Padding(controlsMargin),
-                Text = "Name",
-                MinimumSize = controlsMinWidth100
-            }, 0, 0);
-
-            dialog._nameTextBox = new TextBox()
-            {
-                Name = "Name",
-                Margin = new Padding(controlsMargin),
-                Size = new Size(383, 20),
-            };
-
-            table.Controls.Add(dialog._nameTextBox, 1, 0);
-
-
-            table.Controls.Add(new Label()
-            {
-                AutoSize = true,
-                Margin = new Padding(controlsMargin),
-                Text = "Description",
-                MinimumSize = controlsMinWidth100
-            }, 0, 1);
-
-            dialog._descriptionTextBox = new TextBox()
-            {
-                Name = "Description",
-                AcceptsReturn = true,
-                Multiline = true,
-                Margin = new Padding(controlsMargin),
-                Size = new Size(383, 69)
-            };
-
-            table.Controls.Add(dialog._descriptionTextBox, 1, 1);
-
-
-            var buttonsPanel = new FlowLayoutPanel()
-            {
-                Anchor = AnchorStyles.Right,
-                AutoSize = true,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                Margin = new Padding(dialog.Font.Height),
-            };
-                        
-            var saveOperationButton = new SaveButton(buttonsPanel, dialog.Font);
-            saveOperationButton.Click += new EventHandler(dialog.SaveOperationButton_Click);
-
-            var cancelOperationButton = new CancelButton(buttonsPanel, dialog.Font);
-            cancelOperationButton.Click += new EventHandler(dialog.CancelButton_Click);
-            
-            table.Controls.Add(buttonsPanel, 1, 2);
-            
+            NameTextBox = CreateTextboxWithLabel(table, 0, "Name", "Name");
+            DescriptionTextBox = CreateTextboxWithLabel(table, 1, "Description", "Description", null, true);
+            CreateButtons(table, 2);
 
             table.ResumeLayout();
-
-            return dialog;
         }
 
-
-        private void SaveOperationButton_Click(object sender, EventArgs e)
-        {
-            if (SaveClick())
-            {
-                Close();
-            }
-        }
+        #endregion
 
 
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            CancelClick();
-            Close();
-        }
+        #region private
 
+        protected TextBox NameTextBox;
+        protected TextBox DescriptionTextBox;
 
-        private bool SaveClick()
-        {
-            try
-            {
-                // TODO: Automatic data binding.
-                DataObject.Name = _nameTextBox.Text;
-                DataObject.Description = _descriptionTextBox.Text;
-
-                DataObject.Validate();
-            }
-            catch (Exception ex)
-            {
-                UnhandledErrorForm.Open(ex);
-
-                return false;
-            }
-
-            DialogResult = DialogResult.OK;
-
-            return true;
-        }
-
-
-        private void CancelClick()
-        {
-            DialogResult = DialogResult.Cancel;
-        }
+        #endregion
     }
 }

@@ -33,6 +33,14 @@ namespace BookManagerWF.Forms
 
     public abstract class BaseEditorForm : Form
     {
+        #region constants
+
+        public const int DefaultTextBoxMinCharsPerLine = 30;
+        public const int DefaultMultilineTextBoxMinLines = 8;
+
+        #endregion
+
+
         #region properties
 
         /// <summary>
@@ -62,9 +70,11 @@ namespace BookManagerWF.Forms
         /// Constructor.
         /// </summary>
         /// <param name="dataObject">A data object.</param>
-        /// <param name="dataObjectTitle">A title used for a data object of this editor.</param>
-        protected BaseEditorForm(object dataObject, string dataObjectTitle)
+        /// <param name="dataObjectTitle">A title used for a data object of this editor or null.</param>
+        protected BaseEditorForm(object dataObject, string dataObjectTitle = null)
         {
+            if (dataObject == null) throw new ArgumentNullException("dataObject");
+            
             Owner = Registry.Get<MainForm>();
             StartPosition = FormStartPosition.CenterParent;
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -81,7 +91,7 @@ namespace BookManagerWF.Forms
             InitializeComponent();
 
             DataObject = dataObject;
-            DataObjectTitle = dataObjectTitle;
+            DataObjectTitle = dataObjectTitle ?? "Object";
 
             DialogResult = DialogResult.OK;
         }
@@ -108,8 +118,7 @@ namespace BookManagerWF.Forms
 
         #endregion
 
-
-
+        
         #region protected
 
         /// <summary>
@@ -120,13 +129,13 @@ namespace BookManagerWF.Forms
         /// <summary>
         /// Creates the main layout table.
         /// </summary>
-        /// <param name="rowCount">A number of desired rows in this table.</param>
-        /// <param name="columnCount">A number of desired columns in this table. Two by default and as a minimum.</param>
+        /// <param name="rowCount">A number of desired rows in this table. One by default and as the minimum.</param>
+        /// <param name="columnCount">A number of desired columns in this table. Two by default and as the minimum.</param>
         /// <returns></returns>
         protected TableLayoutPanel CreateLayoutTable(int rowCount, int columnCount = 2)
         {
             if (rowCount < 1) throw new ArgumentException("The rowCount is too small.");
-            if (rowCount < 2) throw new ArgumentException("The columnCount is too small.");
+            if (columnCount < 2) throw new ArgumentException("The columnCount is too small.");
 
             return new TableLayoutPanel()
             {
@@ -148,7 +157,7 @@ namespace BookManagerWF.Forms
         /// <param name="minCharsPerLIne">A minimal number of characters per line.</param>
         /// <param name="minLines">A minimal number of lines.</param>
         /// <returns>A created TextBox instance.</returns>
-        protected TextBox CreateTextboxWithLabel(TableLayoutPanel table, int row, string label, string bindingName = null, int minCharsPerLIne = 30, int minLines = 1)
+        protected TextBox CreateTextboxWithLabel(TableLayoutPanel table, int row, string label, string bindingName = null, int minCharsPerLine = DefaultTextBoxMinCharsPerLine, int minLines = 1)
         {
             if (table == null) throw new ArgumentNullException("table");
             if (row < 0 || row > table.RowCount) throw new ArgumentException("The row is out of allowed rows range.");
@@ -170,7 +179,7 @@ namespace BookManagerWF.Forms
                 Multiline = multiline,
                 Margin = new Padding(ControlsMargin),
                 Size = new Size(
-                    Font.Height * minCharsPerLIne,  // About N+ characters at a line.
+                    Font.Height * minCharsPerLine,  // About N+ characters per line.
                     Font.Height * minLines)         // N lines.
             };
 

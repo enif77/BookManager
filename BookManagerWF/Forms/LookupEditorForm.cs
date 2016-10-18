@@ -98,7 +98,7 @@ namespace BookManagerWF.Forms
             table.SuspendLayout();
 
             NameTextBox = CreateTextboxWithLabel(table, 0, "Name", "Name");
-            DescriptionTextBox = CreateTextboxWithLabel(table, 1, "Description", "Description", 30, 8);
+            DescriptionTextBox = CreateTextboxWithLabel(table, 1, "Description", "Description", DefaultTextBoxMinCharsPerLine, DefaultMultilineTextBoxMinLines);
             CreateButtons(table, 2);
 
             table.ResumeLayout();

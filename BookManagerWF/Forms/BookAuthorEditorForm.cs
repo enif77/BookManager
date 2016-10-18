@@ -89,7 +89,7 @@ namespace BookManagerWF.Forms
 
             FirstNameTextBox = CreateTextboxWithLabel(table, 0, "First name", "FirstName");
             LastNameTextBox = CreateTextboxWithLabel(table, 1, "Last name", "LastName");
-            DescriptionTextBox = CreateTextboxWithLabel(table, 2, "Note", "Description", 30, 8);
+            DescriptionTextBox = CreateTextboxWithLabel(table, 2, "Note", "Description", DefaultTextBoxMinCharsPerLine, DefaultMultilineTextBoxMinLines);
             CreateButtons(table, 3);
 
             table.ResumeLayout();

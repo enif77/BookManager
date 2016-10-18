@@ -31,7 +31,7 @@ namespace BookManagerWF.Forms
     /// <summary>
     /// An example, how to override the LookupEditorForm.
     /// </summary>
-    public class BookAuthorEditorForm : LookupEditorForm
+    public class BookAuthorEditorForm : BaseLookupEditorForm
     {
         #region ctor
 

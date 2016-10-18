@@ -28,11 +28,11 @@ namespace BookManagerWF.Forms
     using SimpleDb.Shared;
 
 
-    public class LookupEditorForm : BaseEditorForm
+    public class BaseLookupEditorForm : BaseEditorForm
     {
         #region ctor
 
-        protected LookupEditorForm(ILookup dataObject, string dataObjectTitle)
+        protected BaseLookupEditorForm(ILookup dataObject, string dataObjectTitle)
             : base(dataObject, dataObjectTitle)
         {
             Text = (dataObject.Id <= 0)
@@ -49,7 +49,7 @@ namespace BookManagerWF.Forms
         {
             if (dataObject == null) throw new ArgumentNullException("dataObject");
 
-            var dialog = new LookupEditorForm(dataObject, dataObjectTitle);
+            var dialog = new BaseLookupEditorForm(dataObject, dataObjectTitle);
                         
             dialog.LoadDataToControls();
             dialog.ShowDialog();

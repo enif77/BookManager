@@ -144,16 +144,15 @@ namespace BookManagerWF.Forms
         /// <param name="table">A layout table.</param>
         /// <param name="row">A row, at which this textbox should be created.</param>
         /// <param name="label">A text of this TextBox label.</param>
-        /// <param name="bindingName">A binding name.</param>
-        /// <param name="size">A desired size of this TextBox.</param>
-        /// <param name="multiline">Is this TextBox multiline?</param>
+        /// <param name="bindingName">A binding name or null.</param>
+        /// <param name="minCharsPerLIne">A minimal number of characters per line.</param>
+        /// <param name="minLines">A minimal number of lines.</param>
         /// <returns>A created TextBox instance.</returns>
-        protected TextBox CreateTextboxWithLabel(TableLayoutPanel table, int row, string label, string bindingName, Size? size = null, bool multiline = false)
+        protected TextBox CreateTextboxWithLabel(TableLayoutPanel table, int row, string label, string bindingName = null, int minCharsPerLIne = 30, int minLines = 1)
         {
             if (table == null) throw new ArgumentNullException("table");
             if (row < 0 || row > table.RowCount) throw new ArgumentException("The row is out of allowed rows range.");
             if (label == null) throw new ArgumentNullException("label");
-            if (String.IsNullOrWhiteSpace(bindingName)) throw new ArgumentException("A bindingName expected.");
 
             table.Controls.Add(new Label()
             {
@@ -163,16 +162,24 @@ namespace BookManagerWF.Forms
                 MinimumSize = ControlsMinWidth100
             }, 0, row);
 
+            var multiline = minLines > 1;
+
             var textBox = new TextBox()
             {
-                Name = bindingName,
                 AcceptsReturn = multiline,
                 Multiline = multiline,
                 Margin = new Padding(ControlsMargin),
-
-                // TODO: Default size.
-                Size = size ?? new Size(383, multiline ? 69 : 20)
+                Size = new Size(
+                    Font.Height * minCharsPerLIne,  // About N+ characters at a line.
+                    Font.Height * minLines)         // N lines.
             };
+
+            if (String.IsNullOrWhiteSpace(bindingName) == false)
+            {
+                textBox.Name = bindingName;
+
+                // TODO: Add this textbox to the bindable textboxes list.
+            }
 
             table.Controls.Add(textBox, 1, row);
 

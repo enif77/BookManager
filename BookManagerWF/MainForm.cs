@@ -1,6 +1,6 @@
 ﻿/* BookManager - (C) 2016 Premysl Fara 
  
-BookManager are available under the zlib license:
+BookManager is available under the zlib license:
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -19,7 +19,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  
  */
- 
+
 namespace BookManagerWF
 {
     using System;

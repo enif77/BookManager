@@ -60,9 +60,6 @@
     <Compile Include="Forms\BookAuthorEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BookTypeEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\BaseEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -73,6 +73,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\DialogResultStateType.cs" />
+    <Compile Include="Forms\LookupsEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\UnhandledErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>

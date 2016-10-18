@@ -321,7 +321,7 @@ namespace BookManager.Forms
                     var entity = item as T;
                     if (entity == null || entity.Id == 0)
                     {
-                        MessageBox.Show("An item can not be deleted. Does not exists or has ID = 0.", "Art Manager - Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("An item can not be deleted. Does not exists or has ID = 0.", "Book Manager - Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
                         continue;
                     }

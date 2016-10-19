@@ -80,6 +80,7 @@ namespace BookManagerWF.Forms
             FormBorderStyle = FormBorderStyle.FixedDialog;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            AutoScaleMode = AutoScaleMode.Font;
             Text = "Book Manager - Editor";
 
 
@@ -142,6 +143,7 @@ namespace BookManagerWF.Forms
                 Parent = this,
                 Padding = new Padding(Font.Height),
                 AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 ColumnCount = columnCount,
                 RowCount = rowCount
             };

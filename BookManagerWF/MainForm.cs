@@ -105,9 +105,17 @@ namespace BookManagerWF
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //BookTypeEditorForm.Open(new BookType());
-            //LookupEditorForm.Open(new BookGenre(), "Book Genre");
-            BookAuthorEditorForm.Open(new BookAuthor() { FirstName = "Karel", LastName = "Novák" });
+            //BaseLookupEditorForm.Open(new BookGenre(), "Book Genre");
+            //BookAuthorEditorForm.Open(new BookAuthor() { FirstName = "Karel", LastName = "Novák" });
+
+            var lookupsWindow = new LookupsEditorForm(Gdo)
+            {
+                Owner = this,
+                ShowInTaskbar = false,
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            lookupsWindow.ShowDialog();
         }
     }
 }

@@ -82,6 +82,8 @@ namespace BookManagerWF.Forms
 
         protected override void InitializeComponent()
         {
+            SuspendLayout();
+
             // Main layout table.
             var table = CreateLayoutTable(4);
 
@@ -92,7 +94,8 @@ namespace BookManagerWF.Forms
             DescriptionTextBox = CreateTextboxWithLabel(table, 2, "Note", "Description", DefaultTextBoxMinCharsPerLine, DefaultMultilineTextBoxMinLines);
             CreateButtons(table, 3);
 
-            table.ResumeLayout();
+            table.ResumeLayout(false);
+            ResumeLayout(false);
         }
        
 

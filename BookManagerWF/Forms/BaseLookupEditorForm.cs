@@ -87,12 +87,13 @@ namespace BookManagerWF.Forms
 
         #endregion
 
-
-
+        
         #region protected
 
         protected override void InitializeComponent()
         {
+            SuspendLayout();
+
             var table = CreateLayoutTable(3);
 
             table.SuspendLayout();
@@ -101,7 +102,8 @@ namespace BookManagerWF.Forms
             DescriptionTextBox = CreateTextboxWithLabel(table, 1, "Description", "Description", DefaultTextBoxMinCharsPerLine, DefaultMultilineTextBoxMinLines);
             CreateButtons(table, 2);
 
-            table.ResumeLayout();
+            table.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion

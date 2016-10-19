@@ -26,8 +26,8 @@ namespace BookManagerWF.Forms
     using System.Windows.Forms;
 
     using BookManager.DataLayer;
-    
-    
+    using Injektor;
+
     public class LookupsEditorForm : Form
     {
         private bool _initialized = false;
@@ -67,11 +67,131 @@ namespace BookManagerWF.Forms
 
             _initialized = true;
         }
-
+        
 
         private void InitializeComponent()
         {
-            // TODO: Implement UI.
+            SuspendLayout();
+
+            Owner = Registry.Get<MainForm>();
+            StartPosition = FormStartPosition.CenterParent;
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            AutoSize = false;
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1024, 800);
+            Text = "Book Manager - Lookups Editor";
+
+
+            var tabContror = new TabControl()
+            {
+                Dock = DockStyle.Fill,
+                SizeMode = TabSizeMode.Fixed,
+                Name = "tabContror",
+                SelectedIndex = 0,
+                TabIndex = 0
+            };
+            
+            tabContror.SuspendLayout();
+                
+                        
+            CreateBookAuthorTabPage(tabContror);
+            CreateBookCategoryTabPage(tabContror);
+                       
+            
+
+            Controls.Add(tabContror);
+
+            tabContror.ResumeLayout(false);
+
+            ResumeLayout(false);
+        }
+        
+
+        private void CreateBookAuthorTabPage(TabControl tabContror)
+        {
+            var bookAuthorTabPage = new TabPage()
+            {
+                Name = "bookAuthorTabPage",
+                TabIndex = 0,
+                Text = "Book Authors",
+                UseVisualStyleBackColor = true
+            };
+
+            bookAuthorTabPage.SuspendLayout();
+
+            bookAuthorTabPage.Controls.Add(new Button()
+            {
+                Text = "Tab 1 button 1",
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            });
+
+            bookAuthorTabPage.ResumeLayout(false);
+
+            tabContror.Controls.Add(bookAuthorTabPage);
+        }
+        
+
+        private void CreateBookCategoryTabPage(TabControl tabContror)
+        {
+            var bookCathegoryTabPage = new TabPage()
+            {
+                Name = "bookAuthorTabPage",
+                TabIndex = 1,
+                Text = "Book Cathegories",
+                UseVisualStyleBackColor = true
+            };
+
+            bookCathegoryTabPage.SuspendLayout();
+
+            var bcFlo = new FlowLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                AutoScrollMinSize = new System.Drawing.Size(800, 480),
+                //AutoScrollMargin = new System.Drawing.Size(640, 480),
+            };
+
+
+            bcFlo.SuspendLayout();
+
+            bcFlo.Controls.Add(new Button()
+            {
+                Text = "Tab 2 button 1",
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            });
+            bcFlo.Controls.Add(new Button()
+            {
+                Text = "Tab 2 button 2",
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            });
+            bcFlo.Controls.Add(new Button()
+            {
+                Text = "Tab 2 button 3",
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            });
+            bcFlo.Controls.Add(new Button()
+            {
+                Text = "Tab 2 button 4",
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            });
+            bcFlo.Controls.Add(new Button()
+            {
+                Text = "Tab 2 button 5",
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            });
+            
+            bookCathegoryTabPage.Controls.Add(bcFlo);
+
+            bcFlo.ResumeLayout(false);
+            bookCathegoryTabPage.ResumeLayout(false);
+
+            tabContror.Controls.Add(bookCathegoryTabPage);
         }
 
     }
